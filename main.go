@@ -15,7 +15,6 @@ func main() {
 
 	r := gin.Default()
 	r.LoadHTMLGlob("views/*/*.html")
-	r.StaticFile("/frog-logo.png", "./assets/imgs/standing-frog.png")
 	r.GET("/", routes.IndexRoute)
 	r.GET("/about", routes.AboutMeRoute)
 	r.GET("/contact", routes.ContactRoute)
