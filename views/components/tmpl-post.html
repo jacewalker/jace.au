@@ -1,0 +1,15 @@
+<html>
+    <head>
+        {{ template "header.html" }} 
+    </head>
+<body>
+    <div class="grid grid-cols-6">
+        <aside class="col-span-1 h-screen sticky top-0">
+            {{ template "menu.html" .}}
+        </aside>
+        <div class="col-span-5">
+            {{ template "post.html" .}}
+        </div>
+    </div>
+</body>
+</html>

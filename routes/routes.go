@@ -1,9 +1,11 @@
 package routes
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/jacewalker/tools/articles"
 	"github.com/jacewalker/tools/contact"
 )
 
@@ -46,6 +48,38 @@ func ContactSubmissionRoute(c *gin.Context) {
 		go contact.SendEmail(&form)
 		c.HTML(http.StatusOK, "tmpl-contact.html", nil)
 	}
+
+}
+
+func ArticlesRoute(c *gin.Context) {
+	posts := articles.RetrieveArticles(c)
+
+	c.HTML(http.StatusOK, "tmpl-articles.html", gin.H{
+		"posts": posts,
+	})
+}
+
+func ArticlePostRoute(c *gin.Context) {
+	posts := articles.RetrieveArticles(c)
+	var foundPost articles.Post
+
+	for _, post := range posts {
+		if post.Title == c.Param("postName") {
+			fmt.Println("Found Post! Post Title: ", post.Title)
+			foundPost = post
+			break
+		} else {
+			fmt.Println("Could not find post for ", post.Title)
+			c.HTML(http.StatusNotFound, "tmpl-error404.html", gin.H{
+				"error": "Article not found",
+			})
+		}
+	}
+
+	c.HTML(http.StatusOK, "tmpl-post.html", gin.H{
+		"Title":   foundPost.Title,
+		"Content": foundPost.Content,
+	})
 
 }
 

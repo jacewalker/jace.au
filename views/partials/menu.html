@@ -19,6 +19,13 @@
                 <span class="text-sm font-medium"> Projects </span>
             </a>
 
+            <a href="/posts"
+                class="flex items-center gap-2 rounded-lg px-4 py-2  hover:bg-gray-100 hover:text-gray-700">
+                <i class="fa-solid fa-scroll"></i>
+
+                <span class="text-sm font-medium"> Posts </span>
+            </a>
+
             <!-- {{ template "tools-menu.html" .}} -->
 
             <a href="/contact"
@@ -66,6 +73,8 @@
     const homeLink = document.querySelector('a[href="/"]');
     const aboutLink = document.querySelector('a[href="/about"]');
     const contactLink = document.querySelector('a[href="/contact"]');
+    const projectsLink = document.querySelector('a[href="/projects"]');
+    const postsLink = document.querySelector('a[href="/articles"]');
 
     // Check the current URL path and add the bg-gray-100 class to the corresponding link
     if (window.location.pathname === '/') {
@@ -74,7 +83,11 @@
         aboutLink.classList.add('bg-gray-100', 'text-gray-800');
     } else if (window.location.pathname === '/contact') {
         contactLink.classList.add('bg-gray-100', 'text-gray-800');
-    }
+    } else if (window.location.pathname === '/projects') {
+        projectsLink.classList.add('bg-gray-100', 'text-gray-800');
+    } else if (window.location.pathname === '/articles') {
+        postsLink.classList.add('bg-gray-100', 'text-gray-800');
+    } 
 
     // Add an event listener for the popstate event (when the URL changes)
     window.addEventListener('popstate', () => {
@@ -82,6 +95,8 @@
         homeLink.classList.remove('bg-gray-100', 'text-gray-800');
         aboutLink.classList.remove('bg-gray-100', 'text-gray-800');
         contactLink.classList.remove('bg-gray-100', 'text-gray-800')
+        projectsLink.classList.remove('bg-gray-100', 'text-gray-800')
+        postsLink.classList.remove('bg-gray-100', 'text-gray-800')
 
         // Check the current URL path and add the bg-gray-100 class to the corresponding link
         if (window.location.pathname === '/') {
@@ -90,6 +105,10 @@
             aboutLink.classList.add('bg-gray-100', 'text-gray-800');
         } else if (window.location.pathname === '/contact') {
             contactLink.classList.add('bg-gray-100', 'text-gray-800');
+        } else if (window.location.pathname === '/projects') {
+            projectsLink.classList.add('bg-gray-100', 'text-gray-800');
+        } else if (window.location.pathname === '/articles') {
+            postsLink.classList.add('bg-gray-100', 'text-gray-800');
         }
     });
 </script>
