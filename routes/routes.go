@@ -38,8 +38,15 @@ func ContactSubmissionRoute(c *gin.Context) {
 	form.Phone = c.PostForm("phone")
 	form.Message = c.PostForm("message")
 
-	go contact.SendEmail(&form)
-	c.HTML(http.StatusOK, "tmpl-contact.html", nil)
+	if form.Name == "" || form.Email == "" || form.Message == "" {
+		c.HTML(http.StatusBadRequest, "tmpl-contact.html", gin.H{
+			"error": "Oops 😬, a field is missing. All except mobile number are required.",
+		})
+	} else {
+		go contact.SendEmail(&form)
+		c.HTML(http.StatusOK, "tmpl-contact.html", nil)
+	}
+
 }
 
 func NotFound(c *gin.Context) {

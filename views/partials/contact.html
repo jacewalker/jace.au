@@ -31,14 +31,14 @@
         <form action="/contact" method="post" class="space-y-4">
           <div>
             <label class="sr-only" for="name">Name</label>
-            <input class="w-full rounded-lg border border-gray-200 p-3 text-sm" placeholder="Name (typically yours)"
+            <input class="w-full rounded-lg border border-gray-200 p-3 text-sm" placeholder="Name* (typically yours)"
               type="text" id="name" name="name" />
           </div>
 
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <label class="sr-only" for="email">Email</label>
-              <input class="w-full rounded-lg border border-gray-200 p-3 text-sm" placeholder="Email address"
+              <input class="w-full rounded-lg border border-gray-200 p-3 text-sm" placeholder="Email address*"
                 type="email" id="email" name="email" />
             </div>
 
@@ -68,3 +68,27 @@
     </div>
   </div>
 </section>
+
+<script>
+  const form = document.querySelector('form');
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const messageInput = document.getElementById('message');
+
+  const errorMessage = "{{ .error }}"
+
+  if (errorMessage) {
+    alert(errorMessage)
+  }
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    if (!nameInput.value.trim() || !emailInput.value.trim() || !messageInput.value.trim()) {
+      alert('Oops 😬, a field is missing. All except mobile number are required.');
+      return;
+    }
+
+    form.submit();
+  });
+</script>
