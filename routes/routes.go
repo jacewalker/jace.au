@@ -25,8 +25,13 @@ func ContactRoute(c *gin.Context) {
 	})
 }
 
-func ContactSubmissionRoute(c *gin.Context) {
+func ProjectsRoute(c *gin.Context) {
+	c.HTML(http.StatusOK, "tmpl-projects.html", gin.H{
+		"title": "Jace's Tools",
+	})
+}
 
+func ContactSubmissionRoute(c *gin.Context) {
 	var form contact.Form
 	form.Name = c.PostForm("name")
 	form.Email = c.PostForm("email")

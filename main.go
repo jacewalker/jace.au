@@ -15,8 +15,10 @@ func main() {
 
 	r := gin.Default()
 	r.LoadHTMLGlob("views/*/*.html")
+	r.StaticFile("/assets/imgs/jace-cartoon.jpeg", "./assets/imgs/jace-cartoon.jpeg")
 	r.GET("/", routes.IndexRoute)
 	r.GET("/about", routes.AboutMeRoute)
+	r.GET("/projects", routes.ProjectsRoute)
 	r.GET("/contact", routes.ContactRoute)
 	r.POST("/contact", routes.ContactSubmissionRoute)
 	r.NoRoute(routes.NotFound)

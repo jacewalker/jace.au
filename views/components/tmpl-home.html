@@ -4,8 +4,12 @@
     </head>
 <body>
     <div class="grid grid-cols-6">
-        {{ template "menu.html" .}}
-        {{ template "home.html" .}}
+        <aside class="col-span-1 h-screen sticky top-0">
+            {{ template "menu.html" .}}
+        </aside>
+        <main class="col-span-5">
+            {{ template "home.html" .}}
+        </main>
     </div>
 </body>
 </html>
