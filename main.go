@@ -12,9 +12,9 @@ func main() {
 	if err := godotenv.Load(".env"); err != nil {
 		log.Fatal("Error loading .env file")
 	}
+	gin.SetMode(gin.ReleaseMode)
 
-	r := gin.Default()
-	r.Delims("{{", "}}")
+	r := gin.New()
 	r.LoadHTMLGlob("./views/*/*.html")
 	r.StaticFile("/assets/imgs/jace-cartoon.jpeg", "./assets/imgs/jace-cartoon.jpeg")
 	r.StaticFile("/assets/imgs/jace-gage.jpeg", "./assets/imgs/jace-gage.jpeg")
@@ -26,7 +26,7 @@ func main() {
 	r.GET("/about", routes.AboutMeRoute)
 	r.GET("/projects", routes.ProjectsRoute)
 	r.GET("/posts", routes.ArticlesRoute)
-	r.GET("/posts/:postName", routes.ArticlePostRoute)
+	r.GET("/posts/:postID", routes.ArticlePostRoute)
 	r.GET("/contact", routes.ContactRoute)
 	r.POST("/contact", routes.ContactSubmissionRoute)
 	r.NoRoute(routes.NotFound)

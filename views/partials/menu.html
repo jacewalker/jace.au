@@ -1,114 +1,147 @@
-<div class="flex h-screen flex-col justify-between border-r bg-white sticky">
-    <div class="px-4 py-6">
-        <nav aria-label="Main Nav" class="mt-6 flex flex-col space-y-1 text-gray-500">
-            <a href="/" class="flex items-center gap-2 rounded-lg hover:bg-gray-100 px-4 py-2">
-                <i class="fa-solid fa-house-chimney h-5 w-5 opacity-75"></i>
-                <span class="text-sm font-medium"> Home </span>
-            </a>
+<aside class="col-span-1 h-screen sticky top-0" id="menubar-parent">
+    <button
+        class="xl:hidden fixed top-4 left-4 z-50 p-4 bg-white rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        id="toggle-sidebar">
+        <i class="fa-solid fa-bars"></i>
+    </button>
 
-            <a href="/about"
-                class="flex items-center gap-2 rounded-lg px-4 py-2  hover:bg-gray-100 hover:text-gray-700">
-                <i class="fa-solid fa-circle-info"></i>
-
-                <span class="text-sm font-medium">About Me </span>
-            </a>
-            <a href="/projects"
-                class="flex items-center gap-2 rounded-lg px-4 py-2  hover:bg-gray-100 hover:text-gray-700">
-                <i class="fa-solid fa-bars-progress"></i>
-
-                <span class="text-sm font-medium"> Projects </span>
-            </a>
-
-            <a href="/posts"
-                class="flex items-center gap-2 rounded-lg px-4 py-2  hover:bg-gray-100 hover:text-gray-700">
-                <i class="fa-solid fa-scroll"></i>
-
-                <span class="text-sm font-medium"> Posts </span>
-            </a>
-
-            <!-- {{ template "tools-menu.html" .}} -->
-
-            <a href="/contact"
-                class="flex items-center gap-2 rounded-lg px-4 py-2  hover:bg-gray-100 hover:text-gray-700">
-                <i class="fa-solid fa-envelope"></i>
-
-                <span class="text-sm font-medium"> Contact </span>
-            </a>
-        </nav>
-    </div>
-
-    <div class="sticky inset-x-0 bottom-0 border-t border-gray-100">
-        <a class="flex items-center gap-2 bg-white pb-4 pl-2 pr-2 hover:bg-gray-50">
-            <div class="pl-2 flex items-center">
-                <img alt="Jace Walker"
-                    src="https://media.licdn.com/dms/image/C5603AQGAW5xc6KoajA/profile-displayphoto-shrink_800_800/0/1607331951161?e=1684368000&v=beta&t=f53LYi7AVGwtkiO9LAY3R8L8D9XDzshnP--SVdSjR7o"
-                    class="h-10 w-10 rounded-full object-cover" />
-                <div class="ml-1">
-                    <p class="text-xs">
-                        <strong class="block font-medium">Jace Walker</strong>
-                        <span> its@jace.au </span>
-                    </p>
-                </div>
-                <div class="flex items-center ml-auto pb-4">
-                    <a href="https://www.linkedin.com/in/jacewalker/" class="mr-2">
-                        <i class="fa-brands fa-linkedin"></i>
+    <div class="flex flex-col" id="menubar-content">
+        <div class="flex xl:flex h-screen flex-col justify-between border-r bg-white md:sticky hidden xl:block"
+            id="sidebar">
+            <div class="px-4 py-6">
+                <nav aria-label="Main Nav" class="mt-6 flex flex-col space-y-1 text-gray-500">
+                    <a href="/" class="flex items-center gap-2 rounded-lg hover:bg-gray-100 px-4 py-2">
+                        <i class="fa-solid fa-house-chimney h-5 w-5 opacity-75"></i>
+                        <span class="text-sm font-medium"> Home </span>
                     </a>
-                    <a href="https://github.com/jacewalker" class="mr-2">
-                        <i class="fa-brands fa-github"></i>
+
+                    <a href="/about"
+                        class="flex items-center gap-2 rounded-lg px-4 py-2  hover:bg-gray-100 hover:text-gray-700">
+                        <i class="fa-solid fa-circle-info"></i>
+
+                        <span class="text-sm font-medium">About Me </span>
                     </a>
-                    <a href="https://www.instagram.com/jacewalker" class="mr-2">
-                        <i class="fa-brands fa-instagram"></i>
+                    <a href="/projects"
+                        class="flex items-center gap-2 rounded-lg px-4 py-2  hover:bg-gray-100 hover:text-gray-700">
+                        <i class="fa-solid fa-bars-progress"></i>
+
+                        <span class="text-sm font-medium"> Projects </span>
                     </a>
-                    <a href="https://www.facebook.com/jacceewalker" class="mr-2">
-                        <i class="fa-brands fa-facebook"></i>
+
+                    <!-- <a href="/posts"
+                        class="flex items-center gap-2 rounded-lg px-4 py-2  hover:bg-gray-100 hover:text-gray-700">
+                        <i class="fa-solid fa-scroll"></i>
+
+                        <span class="text-sm font-medium"> Posts </span>
+                    </a> -->
+
+                    <!-- {{ template "tools-menu.html" .}} -->
+
+                    <a href="/contact"
+                        class="flex items-center gap-2 rounded-lg px-4 py-2  hover:bg-gray-100 hover:text-gray-700">
+                        <i class="fa-solid fa-envelope"></i>
+
+                        <span class="text-sm font-medium"> Contact </span>
                     </a>
-                </div>
+                </nav>
             </div>
-        </a>
+
+            <div class="sticky inset-x-0 bottom-0 border-t border-gray-100">
+                <a class="flex items-center gap-2 bg-white pb-4 pl-2 pr-2 hover:bg-gray-50">
+                    <div class="pl-2 flex items-center">
+                        <img alt="Jace Walker"
+                            src="https://media.licdn.com/dms/image/C5603AQGAW5xc6KoajA/profile-displayphoto-shrink_800_800/0/1607331951161?e=1684368000&v=beta&t=f53LYi7AVGwtkiO9LAY3R8L8D9XDzshnP--SVdSjR7o"
+                            class="h-10 w-10 rounded-full object-cover" />
+                        <div class="ml-1">
+                            <p class="text-xs">
+                                <strong class="block font-medium">Jace Walker</strong>
+                                <span> its@jace.au </span>
+                            </p>
+                        </div>
+                        <div class="flex items-center ml-auto pb-4">
+                            <a href="https://www.linkedin.com/in/jacewalker/" class="mr-2">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+                            <a href="https://github.com/jacewalker" class="mr-2">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                            <a href="https://www.instagram.com/jacewalker" class="mr-2">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                            <a href="https://www.facebook.com/jacceewalker" class="mr-2">
+                                <i class="fa-brands fa-facebook"></i>
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
-</div>
+</aside>
+
 
 <script>
-    // Get the "Home" and "About Me" links
-    const homeLink = document.querySelector('a[href="/"]');
-    const aboutLink = document.querySelector('a[href="/about"]');
-    const contactLink = document.querySelector('a[href="/contact"]');
-    const projectsLink = document.querySelector('a[href="/projects"]');
-    const postsLink = document.querySelector('a[href="/articles"]');
+    // Function to highlight the active menu item
+    function highlightActiveLink() {
+        // Get all the menu links
+        const menuLinks = document.querySelectorAll('#sidebar nav a');
 
-    // Check the current URL path and add the bg-gray-100 class to the corresponding link
-    if (window.location.pathname === '/') {
-        homeLink.classList.add('bg-gray-100', 'text-gray-800');
-    } else if (window.location.pathname === '/about') {
-        aboutLink.classList.add('bg-gray-100', 'text-gray-800');
-    } else if (window.location.pathname === '/contact') {
-        contactLink.classList.add('bg-gray-100', 'text-gray-800');
-    } else if (window.location.pathname === '/projects') {
-        projectsLink.classList.add('bg-gray-100', 'text-gray-800');
-    } else if (window.location.pathname === '/articles') {
-        postsLink.classList.add('bg-gray-100', 'text-gray-800');
-    } 
+        // Loop through the menu links and update their classes
+        menuLinks.forEach(link => {
+            // If the link's href matches the current URL path, add the active classes
+            if (link.getAttribute('href') === window.location.pathname) {
+                link.classList.add('bg-gray-100', 'text-gray-800');
+            } else {
+                // Otherwise, remove the active classes
+                link.classList.remove('bg-gray-100', 'text-gray-800');
+            }
+        });
+    }
+
+    // Call the function to highlight the active link on page load
+    highlightActiveLink();
 
     // Add an event listener for the popstate event (when the URL changes)
-    window.addEventListener('popstate', () => {
-        // Remove the bg-gray-100 class from both links
-        homeLink.classList.remove('bg-gray-100', 'text-gray-800');
-        aboutLink.classList.remove('bg-gray-100', 'text-gray-800');
-        contactLink.classList.remove('bg-gray-100', 'text-gray-800')
-        projectsLink.classList.remove('bg-gray-100', 'text-gray-800')
-        postsLink.classList.remove('bg-gray-100', 'text-gray-800')
+    window.addEventListener('popstate', highlightActiveLink);
 
-        // Check the current URL path and add the bg-gray-100 class to the corresponding link
-        if (window.location.pathname === '/') {
-            homeLink.classList.add('bg-gray-100', 'text-gray-800');
-        } else if (window.location.pathname === '/about') {
-            aboutLink.classList.add('bg-gray-100', 'text-gray-800');
-        } else if (window.location.pathname === '/contact') {
-            contactLink.classList.add('bg-gray-100', 'text-gray-800');
-        } else if (window.location.pathname === '/projects') {
-            projectsLink.classList.add('bg-gray-100', 'text-gray-800');
-        } else if (window.location.pathname === '/articles') {
-            postsLink.classList.add('bg-gray-100', 'text-gray-800');
+    // Get the sidebar and the toggle button
+    const sidebar = document.getElementById('sidebar');
+    const toggleSidebarButton = document.getElementById('toggle-sidebar');
+    const menuBarAside = document.getElementById('menubar-parent')
+    const menuBarDiv = document.getElementById('menubar-content');
+
+    // Add an event listener for the click event on the toggle button
+    toggleSidebarButton.addEventListener('click', () => {
+        // Toggle the 'hidden' and 'block' classes on the sidebar
+        menuBarAside.classList.toggle('col-span-6');
+        sidebar.classList.toggle('hidden');
+        sidebar.classList.toggle('block');
+    });
+
+    // Add an event listener for the click event on the sidebar links
+    document.querySelectorAll('#sidebar nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            // Collapse the sidebar on smaller screens after clicking a link
+            if (!sidebar.classList.contains('xl:block')) {
+                sidebar.classList.add('hidden');
+                sidebar.classList.remove('block');
+                menuBarAside.classList.remove('col-span-6');
+            }
+
+            if (menuBarAside.classList.contains('col-span-6')) {
+                menuBarAside.classList.remove('col-span-6');
+            }
+        });
+    });
+
+    // If the window width is greater than a certain breakpoint value, remove 'col-span-6' from menuBarAside
+
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 900) { // Adjust the breakpoint value as needed
+            menuBarAside.classList.remove('col-span-6');
         }
     });
+
+
 </script>

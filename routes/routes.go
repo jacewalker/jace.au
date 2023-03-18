@@ -3,6 +3,7 @@ package routes
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"github.com/jacewalker/tools/articles"
@@ -62,23 +63,29 @@ func ArticlesRoute(c *gin.Context) {
 func ArticlePostRoute(c *gin.Context) {
 	posts := articles.RetrieveArticles(c)
 	var foundPost articles.Post
+	postID, err := strconv.Atoi(c.Param("postID"))
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	for _, post := range posts {
-		if post.Title == c.Param("postName") {
+		if post.ID == postID {
 			fmt.Println("Found Post! Post Title: ", post.Title)
+			fmt.Println("Post ID: ", post.ID)
 			foundPost = post
 			break
 		} else {
 			fmt.Println("Could not find post for ", post.Title)
-			c.HTML(http.StatusNotFound, "tmpl-error404.html", gin.H{
-				"error": "Article not found",
-			})
+			// c.HTML(http.StatusNotFound, "tmpl-error404.html", gin.H{
+			// 	"error": "Article not found",
+			// })
 		}
 	}
 
 	c.HTML(http.StatusOK, "tmpl-post.html", gin.H{
 		"Title":   foundPost.Title,
 		"Content": foundPost.Content,
+		"ID":      foundPost.ID,
 	})
 
 }
