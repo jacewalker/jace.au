@@ -1,12 +1,13 @@
 FROM golang:latest 
 RUN mkdir /app 
 WORKDIR /app
-RUN git clone https://github.com/jacewalker/jace.au
-WORKDIR /app/jace.au
+ADD . /app/
+# RUN git clone https://github.com/jacewalker/jace.au
+WORKDIR /app/
 RUN go install
 RUN go build -o main .
 EXPOSE 8080
-CMD ["/app/jace.au/main"]
+CMD ["/app/main"]
 
-# docker build -t jaceau:latest . 
-# docker run -it -p 80:8080 jaceau:latest
+# docker build -t jaceau:latest . --no-cache
+# docker run --name jace.au -itd --network=proxy -p :8080 jaceau:latest
