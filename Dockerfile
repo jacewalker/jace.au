@@ -1,13 +1,17 @@
-FROM golang:latest 
-RUN mkdir /app 
+# Build stage
+FROM golang:1.21-alpine AS builder
 WORKDIR /app
-ADD . /app/
-# RUN git clone https://github.com/jacewalker/jace.au
-WORKDIR /app/
-RUN go install
-RUN go build -o main .
-EXPOSE 8080
-CMD ["/app/main"]
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+RUN CGO_ENABLED=0 GOOS=linux go build -o main .
 
-# docker build -t jaceau:latest . --no-cache
-# docker run --name jace.au -itd --network=proxy -p :8080 jaceau:latest
+# Runtime stage
+FROM alpine:latest
+RUN apk --no-cache add ca-certificates
+WORKDIR /app
+COPY --from=builder /app/main .
+COPY --from=builder /app/views ./views
+COPY --from=builder /app/assets ./assets
+EXPOSE 8080
+CMD ["./main"]

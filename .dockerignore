@@ -1,0 +1,7 @@
+.env
+.git
+tmp
+node_modules
+PROFILE.md
+.air.toml
+build-errors.log
