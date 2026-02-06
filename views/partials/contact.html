@@ -1,81 +1,80 @@
-<section class="pt-32 pb-20 min-h-screen">
-  <div class="max-w-6xl mx-auto px-6">
+<section class="pt-28 pb-20 min-h-screen">
+  <div class="max-w-5xl mx-auto px-6">
 
     <!-- Header -->
-    <div class="mb-16 reveal-on-scroll">
-      <span class="font-mono text-xs tracking-widest uppercase text-[#00e5a0]/70">Contact</span>
-      <h2 class="font-serif text-4xl sm:text-5xl mt-4 leading-tight">
-        Let's <span class="gradient-text">connect.</span>
+    <div class="mb-14 animate-fade-up">
+      <span class="tag">Contact</span>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight mt-4">
+        Let's talk.
       </h2>
-      <div class="accent-line w-24 mt-6"></div>
     </div>
 
-    <div class="grid lg:grid-cols-12 gap-16">
-      <!-- Left info -->
-      <div class="lg:col-span-5 space-y-8 reveal-on-scroll">
-        <p class="text-white/40 text-lg leading-relaxed" style="font-weight: 300;">
-          Whether you want to discuss a project, explore a collaboration, or just have a conversation
-          about technology &mdash; I'd love to hear from you.
+    <div class="grid lg:grid-cols-12 gap-14">
+      <!-- Info -->
+      <div class="lg:col-span-5 space-y-8 reveal">
+        <p class="text-[#5c5c5c] text-[16px] leading-relaxed">
+          Whether it's a project, a collaboration, or a conversation about
+          infrastructure and technology — I'd enjoy hearing from you.
         </p>
 
-        <div class="space-y-6">
-          <div class="flex items-center gap-4">
-            <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center">
-              <i class="fa-solid fa-envelope text-[#00e5a0] text-sm"></i>
+        <div class="space-y-5">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-[#2563eb]/[0.08] flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-envelope text-[#2563eb] text-xs"></i>
             </div>
             <div>
-              <p class="font-mono text-xs text-white/30 tracking-wider">Email</p>
-              <p class="text-white text-sm mt-0.5">me@jace.au</p>
+              <p class="font-mono text-[11px] text-[#9a9a9a]">Email</p>
+              <p class="text-[#1a1a1a] text-sm font-medium">me@jace.au</p>
             </div>
           </div>
 
-          <div class="flex items-center gap-4">
-            <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center">
-              <i class="fa-solid fa-location-dot text-[#00e5a0] text-sm"></i>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-[#2563eb]/[0.08] flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-location-dot text-[#2563eb] text-xs"></i>
             </div>
             <div>
-              <p class="font-mono text-xs text-white/30 tracking-wider">Location</p>
-              <p class="text-white text-sm mt-0.5">Victoria, Australia</p>
+              <p class="font-mono text-[11px] text-[#9a9a9a]">Location</p>
+              <p class="text-[#1a1a1a] text-sm font-medium">Victoria, Australia</p>
             </div>
           </div>
 
-          <div class="flex items-center gap-4">
-            <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center">
-              <i class="fa-brands fa-linkedin-in text-[#00e5a0] text-sm"></i>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-[#2563eb]/[0.08] flex items-center justify-center shrink-0">
+              <i class="fa-brands fa-linkedin-in text-[#2563eb] text-xs"></i>
             </div>
             <div>
-              <p class="font-mono text-xs text-white/30 tracking-wider">LinkedIn</p>
-              <a href="https://www.linkedin.com/in/jacewalker/" target="_blank" class="text-white text-sm mt-0.5 link-hover hover:text-[#00e5a0] transition-colors">jacewalker</a>
+              <p class="font-mono text-[11px] text-[#9a9a9a]">LinkedIn</p>
+              <a href="https://www.linkedin.com/in/jacewalker/" target="_blank" class="text-[#2563eb] text-sm font-medium link-underline">jacewalker</a>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Form -->
-      <div class="lg:col-span-7 reveal-on-scroll">
-        <form action="/contact" method="post" class="glass-card rounded-xl p-8 sm:p-10 space-y-6" id="contact-form">
+      <div class="lg:col-span-7 reveal">
+        <form action="/contact" method="post" class="card p-8 space-y-5" id="contact-form">
           <div>
-            <label for="name" class="block font-mono text-xs tracking-wider text-white/30 mb-2">Name *</label>
+            <label for="name" class="block font-mono text-[11px] text-[#9a9a9a] mb-1.5">Name *</label>
             <input
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 transition-all duration-300"
+              class="w-full bg-[#faf9f7] border border-black/[0.08] rounded-lg px-4 py-3 text-sm text-[#1a1a1a] placeholder-[#c5c5c5] transition-all"
               placeholder="Your name"
               type="text" id="name" name="name"
             />
           </div>
 
-          <div class="grid sm:grid-cols-2 gap-6">
+          <div class="grid sm:grid-cols-2 gap-5">
             <div>
-              <label for="email" class="block font-mono text-xs tracking-wider text-white/30 mb-2">Email *</label>
+              <label for="email" class="block font-mono text-[11px] text-[#9a9a9a] mb-1.5">Email *</label>
               <input
-                class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 transition-all duration-300"
+                class="w-full bg-[#faf9f7] border border-black/[0.08] rounded-lg px-4 py-3 text-sm text-[#1a1a1a] placeholder-[#c5c5c5] transition-all"
                 placeholder="your@email.com"
                 type="email" id="email" name="email"
               />
             </div>
             <div>
-              <label for="phone" class="block font-mono text-xs tracking-wider text-white/30 mb-2">Phone</label>
+              <label for="phone" class="block font-mono text-[11px] text-[#9a9a9a] mb-1.5">Phone</label>
               <input
-                class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 transition-all duration-300"
+                class="w-full bg-[#faf9f7] border border-black/[0.08] rounded-lg px-4 py-3 text-sm text-[#1a1a1a] placeholder-[#c5c5c5] transition-all"
                 placeholder="Optional"
                 type="tel" id="phone" name="phone"
               />
@@ -83,15 +82,15 @@
           </div>
 
           <div>
-            <label for="message" class="block font-mono text-xs tracking-wider text-white/30 mb-2">Message *</label>
+            <label for="message" class="block font-mono text-[11px] text-[#9a9a9a] mb-1.5">Message *</label>
             <textarea
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 transition-all duration-300 resize-none"
-              placeholder="What would you like to discuss?"
-              rows="6" id="message" name="message"></textarea>
+              class="w-full bg-[#faf9f7] border border-black/[0.08] rounded-lg px-4 py-3 text-sm text-[#1a1a1a] placeholder-[#c5c5c5] transition-all resize-none"
+              placeholder="What's on your mind?"
+              rows="5" id="message" name="message"></textarea>
           </div>
 
-          <button type="submit" class="btn-primary text-sm w-full sm:w-auto">
-            Send message <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+          <button type="submit" class="btn-primary w-full sm:w-auto">
+            Send message <i class="fa-solid fa-arrow-right text-xs"></i>
           </button>
         </form>
       </div>
@@ -105,13 +104,11 @@
   const nameInput = document.getElementById('name');
   const emailInput = document.getElementById('email');
   const messageInput = document.getElementById('message');
-
   const errorMessage = "{{ .error }}";
 
   if (errorMessage) {
-    // Create toast notification
     const toast = document.createElement('div');
-    toast.className = 'fixed top-20 right-6 z-50 glass-card rounded-lg px-6 py-4 text-sm text-white animate-fade-up';
+    toast.className = 'fixed top-20 right-6 z-50 card px-5 py-3.5 text-sm text-[#1a1a1a] animate-fade-up shadow-lg';
     toast.style.borderLeft = '3px solid #ef4444';
     toast.textContent = errorMessage;
     document.body.appendChild(toast);
@@ -120,17 +117,15 @@
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-
     if (!nameInput.value.trim() || !emailInput.value.trim() || !messageInput.value.trim()) {
       const toast = document.createElement('div');
-      toast.className = 'fixed top-20 right-6 z-50 glass-card rounded-lg px-6 py-4 text-sm text-white animate-fade-up';
+      toast.className = 'fixed top-20 right-6 z-50 card px-5 py-3.5 text-sm text-[#1a1a1a] animate-fade-up shadow-lg';
       toast.style.borderLeft = '3px solid #ef4444';
       toast.textContent = 'Please fill in all required fields.';
       document.body.appendChild(toast);
       setTimeout(() => toast.remove(), 4000);
       return;
     }
-
     form.submit();
   });
 </script>

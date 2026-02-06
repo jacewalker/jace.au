@@ -1,87 +1,67 @@
-<nav class="fixed top-0 left-0 right-0 z-50 glass" id="main-nav">
-    <div class="max-w-6xl mx-auto px-6">
-        <div class="flex items-center justify-between h-16">
+<nav class="fixed top-0 left-0 right-0 z-50 bg-[#faf9f7]/80 backdrop-blur-lg border-b border-black/[0.06]" id="main-nav">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="flex items-center justify-between h-14">
             <!-- Logo -->
-            <a href="/" class="flex items-center gap-3 group">
-                <div class="glow-dot"></div>
-                <span class="font-mono text-sm tracking-wider text-white/90 group-hover:text-white transition-colors">jace.au</span>
+            <a href="/" class="flex items-center gap-2.5 group">
+                <div class="w-2 h-2 rounded-full bg-[#2563eb]"></div>
+                <span class="font-display font-bold text-sm text-[#1a1a1a] tracking-tight">jace walker</span>
             </a>
 
             <!-- Desktop Nav -->
-            <div class="hidden md:flex items-center gap-8">
-                <a href="/" class="nav-link font-mono text-xs tracking-widest uppercase text-white/50 hover:text-white transition-all duration-300" data-path="/">Home</a>
-                <a href="/about" class="nav-link font-mono text-xs tracking-widest uppercase text-white/50 hover:text-white transition-all duration-300" data-path="/about">About</a>
-                <a href="/projects" class="nav-link font-mono text-xs tracking-widest uppercase text-white/50 hover:text-white transition-all duration-300" data-path="/projects">Projects</a>
-                <a href="/contact" class="nav-link font-mono text-xs tracking-widest uppercase text-white/50 hover:text-white transition-all duration-300" data-path="/contact">Contact</a>
+            <div class="hidden md:flex items-center gap-1">
+                <a href="/" class="nav-link relative px-3 py-1.5 text-[13px] font-medium text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors" data-path="/">Home</a>
+                <a href="/about" class="nav-link relative px-3 py-1.5 text-[13px] font-medium text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors" data-path="/about">About</a>
+                <a href="/projects" class="nav-link relative px-3 py-1.5 text-[13px] font-medium text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors" data-path="/projects">Projects</a>
+                <a href="/contact" class="nav-link relative px-3 py-1.5 text-[13px] font-medium text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors" data-path="/contact">Contact</a>
             </div>
 
-            <!-- Social Icons -->
+            <!-- Right side -->
             <div class="hidden md:flex items-center gap-4">
-                <a href="https://www.linkedin.com/in/jacewalker/" target="_blank" class="text-white/30 hover:text-[#00e5a0] transition-colors duration-300 text-sm">
-                    <i class="fa-brands fa-linkedin-in"></i>
-                </a>
-                <a href="https://github.com/jacewalker" target="_blank" class="text-white/30 hover:text-[#00e5a0] transition-colors duration-300 text-sm">
+                <a href="https://github.com/jacewalker" target="_blank" class="text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors text-sm">
                     <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/jacewalker/" target="_blank" class="text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors text-sm">
+                    <i class="fa-brands fa-linkedin-in"></i>
                 </a>
             </div>
 
             <!-- Mobile Toggle -->
-            <button class="md:hidden text-white/70 hover:text-white transition-colors p-2" id="mobile-toggle" aria-label="Menu">
-                <i class="fa-solid fa-bars text-lg" id="menu-icon"></i>
+            <button class="md:hidden text-[#5c5c5c] hover:text-[#1a1a1a] transition-colors p-2" id="mobile-toggle" aria-label="Menu">
+                <i class="fa-solid fa-bars" id="menu-icon"></i>
             </button>
         </div>
     </div>
 
     <!-- Mobile Menu -->
-    <div class="md:hidden hidden" id="mobile-menu">
-        <div class="px-6 py-6 border-t border-white/5 space-y-1">
-            <a href="/" class="mobile-nav-link block py-3 font-mono text-sm tracking-wider text-white/50 hover:text-white hover:pl-2 transition-all duration-300">Home</a>
-            <a href="/about" class="mobile-nav-link block py-3 font-mono text-sm tracking-wider text-white/50 hover:text-white hover:pl-2 transition-all duration-300">About</a>
-            <a href="/projects" class="mobile-nav-link block py-3 font-mono text-sm tracking-wider text-white/50 hover:text-white hover:pl-2 transition-all duration-300">Projects</a>
-            <a href="/contact" class="mobile-nav-link block py-3 font-mono text-sm tracking-wider text-white/50 hover:text-white hover:pl-2 transition-all duration-300">Contact</a>
-            <div class="flex items-center gap-5 pt-4 border-t border-white/5">
-                <a href="https://www.linkedin.com/in/jacewalker/" target="_blank" class="text-white/30 hover:text-[#00e5a0] transition-colors">
-                    <i class="fa-brands fa-linkedin-in"></i>
-                </a>
-                <a href="https://github.com/jacewalker" target="_blank" class="text-white/30 hover:text-[#00e5a0] transition-colors">
-                    <i class="fa-brands fa-github"></i>
-                </a>
+    <div class="md:hidden hidden border-t border-black/[0.06]" id="mobile-menu">
+        <div class="px-6 py-4 bg-white space-y-1">
+            <a href="/" class="mobile-nav block py-2 text-sm text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors">Home</a>
+            <a href="/about" class="mobile-nav block py-2 text-sm text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors">About</a>
+            <a href="/projects" class="mobile-nav block py-2 text-sm text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors">Projects</a>
+            <a href="/contact" class="mobile-nav block py-2 text-sm text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors">Contact</a>
+            <div class="flex gap-4 pt-3 border-t border-black/[0.06]">
+                <a href="https://github.com/jacewalker" target="_blank" class="text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors text-sm"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/jacewalker/" target="_blank" class="text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors text-sm"><i class="fa-brands fa-linkedin-in"></i></a>
             </div>
         </div>
     </div>
 </nav>
 
 <script>
-    // Highlight active nav link
-    document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
-        const path = link.getAttribute('href') || link.getAttribute('data-path');
-        if (path === window.location.pathname) {
-            link.classList.remove('text-white/50');
-            link.classList.add('text-[#00e5a0]');
+    // Active link
+    document.querySelectorAll('.nav-link, .mobile-nav').forEach(link => {
+        if (link.getAttribute('href') === window.location.pathname) {
+            link.classList.add('nav-active');
+            link.classList.remove('text-[#9a9a9a]');
         }
     });
 
-    // Mobile menu toggle
+    // Mobile toggle
     const mobileToggle = document.getElementById('mobile-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
     const menuIcon = document.getElementById('menu-icon');
-
     mobileToggle.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
-        if (mobileMenu.classList.contains('hidden')) {
-            menuIcon.className = 'fa-solid fa-bars text-lg';
-        } else {
-            menuIcon.className = 'fa-solid fa-xmark text-lg';
-        }
-    });
-
-    // Nav background on scroll
-    const nav = document.getElementById('main-nav');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            nav.style.borderBottom = '1px solid rgba(255,255,255,0.06)';
-        } else {
-            nav.style.borderBottom = 'none';
-        }
+        menuIcon.className = mobileMenu.classList.contains('hidden') ? 'fa-solid fa-bars' : 'fa-solid fa-xmark';
     });
 </script>

@@ -1,28 +1,27 @@
-<section class="pt-32 pb-20">
-  <div class="max-w-6xl mx-auto px-6">
+<section class="pt-28 pb-20">
+  <div class="max-w-5xl mx-auto px-6">
 
     <!-- Header -->
-    <div class="mb-16 reveal-on-scroll">
-      <span class="font-mono text-xs tracking-widest uppercase text-[#00e5a0]/70">Writing</span>
-      <h2 class="font-serif text-4xl sm:text-5xl mt-4 leading-tight">
-        Posts & <span class="gradient-text">articles.</span>
+    <div class="mb-14 animate-fade-up">
+      <span class="tag">Writing</span>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight mt-4">
+        Posts & articles.
       </h2>
-      <div class="accent-line w-24 mt-6"></div>
     </div>
 
-    <!-- Articles Grid -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
       {{ range .posts }}
-      <a href="/posts/{{ .ID }}" class="glass-card rounded-xl p-8 group block reveal-on-scroll">
-        <div class="w-10 h-10 rounded-lg bg-[#00e5a0]/10 flex items-center justify-center mb-6">
-          <i class="fa-solid fa-file-lines text-[#00e5a0] text-sm"></i>
+      <a href="/posts/{{ .ID }}" class="card p-7 group block reveal">
+        <div class="w-9 h-9 rounded-lg bg-[#2563eb]/[0.08] flex items-center justify-center mb-5">
+          <i class="fa-solid fa-file-lines text-[#2563eb] text-xs"></i>
         </div>
-        <h3 class="text-base font-semibold text-white group-hover:text-[#00e5a0] transition-colors leading-snug">
+        <h3 class="font-display font-bold text-sm text-[#1a1a1a] group-hover:text-[#2563eb] transition-colors leading-snug mb-3">
           {{ .Title }}
         </h3>
-        <div class="flex items-center gap-2 mt-4 text-white/20 group-hover:text-white/40 transition-colors">
-          <span class="font-mono text-xs">Read article</span>
-          <i class="fa-solid fa-arrow-right text-[10px]"></i>
+        <div class="flex items-center gap-1.5 text-[#9a9a9a] group-hover:text-[#2563eb] transition-colors">
+          <span class="font-mono text-[11px]">Read</span>
+          <i class="fa-solid fa-arrow-right text-[9px]"></i>
         </div>
       </a>
       {{ end }}

@@ -12,12 +12,9 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        'serif': ['Instrument Serif', 'serif'],
-        'sans': ['Outfit', 'sans-serif'],
-        'mono': ['JetBrains Mono', 'monospace'],
-      },
-      colors: {
-        'accent': '#00e5a0',
+        'display': ['Bricolage Grotesque', 'sans-serif'],
+        'sans': ['DM Sans', 'sans-serif'],
+        'mono': ['Fira Code', 'monospace'],
       },
     },
   },

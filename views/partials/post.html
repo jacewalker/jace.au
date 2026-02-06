@@ -1,16 +1,12 @@
-<section class="pt-32 pb-20 min-h-screen">
+<section class="pt-28 pb-20 min-h-screen">
   <div class="max-w-3xl mx-auto px-6">
-    <!-- Back link -->
-    <a href="/posts" class="inline-flex items-center gap-2 font-mono text-xs text-white/30 hover:text-[#00e5a0] transition-colors mb-12 reveal-on-scroll">
-      <i class="fa-solid fa-arrow-left text-[10px]"></i>
-      Back to posts
+    <a href="/posts" class="inline-flex items-center gap-2 text-[11px] font-mono text-[#9a9a9a] hover:text-[#2563eb] transition-colors mb-10 reveal">
+      <i class="fa-solid fa-arrow-left text-[9px]"></i> Back to posts
     </a>
 
-    <!-- Title -->
-    <h1 class="font-serif text-3xl sm:text-4xl text-white mb-12 leading-tight reveal-on-scroll">{{ .Title }}</h1>
+    <h1 class="font-display text-2xl sm:text-3xl font-bold tracking-tight text-[#1a1a1a] mb-10 reveal">{{ .Title }}</h1>
 
-    <!-- Content -->
-    <div class="glass-card rounded-xl p-8 sm:p-12 reveal-on-scroll">
+    <div class="card p-8 sm:p-10 reveal">
       <article class="prose prose-lg max-w-none">
         {{ .Content }}
       </article>

@@ -1,115 +1,113 @@
-<section class="pt-32 pb-20">
-  <div class="max-w-6xl mx-auto px-6">
+<section class="pt-28 pb-20">
+  <div class="max-w-5xl mx-auto px-6">
 
     <!-- Header -->
-    <div class="mb-16 reveal-on-scroll">
-      <span class="font-mono text-xs tracking-widest uppercase text-[#00e5a0]/70">Projects</span>
-      <h2 class="font-serif text-4xl sm:text-5xl mt-4 leading-tight">
-        Things I've <span class="gradient-text">built.</span>
+    <div class="mb-12 animate-fade-up">
+      <span class="tag">Projects</span>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight mt-4">
+        Things I've shipped.
       </h2>
-      <div class="accent-line w-24 mt-6"></div>
     </div>
 
-    <!-- Author Card -->
-    <div class="flex items-center gap-4 mb-12 reveal-on-scroll">
-      <img alt="Jace Walker" src="/assets/imgs/jace-cartoon.jpeg" class="w-12 h-12 rounded-full object-cover" style="filter: grayscale(20%);" />
+    <!-- Author -->
+    <div class="flex items-center gap-3 mb-10 animate-fade-up delay-200">
+      <img alt="Jace Walker" src="/assets/imgs/jace-cartoon.jpeg" class="w-10 h-10 rounded-full object-cover border border-black/[0.06]" />
       <div>
-        <p class="text-white font-medium text-sm">Jace Walker</p>
-        <div class="flex gap-4 mt-1">
-          <a href="https://github.com/jacewalker" target="_blank" class="font-mono text-xs text-white/30 hover:text-[#00e5a0] transition-colors">GitHub</a>
-          <a href="https://www.linkedin.com/in/jacewalker/" target="_blank" class="font-mono text-xs text-white/30 hover:text-[#00e5a0] transition-colors">LinkedIn</a>
+        <p class="text-[#1a1a1a] font-medium text-sm">Jace Walker</p>
+        <div class="flex gap-3">
+          <a href="https://github.com/jacewalker" target="_blank" class="font-mono text-[11px] text-[#9a9a9a] hover:text-[#2563eb] transition-colors">GitHub</a>
+          <a href="https://www.linkedin.com/in/jacewalker/" target="_blank" class="font-mono text-[11px] text-[#9a9a9a] hover:text-[#2563eb] transition-colors">LinkedIn</a>
         </div>
       </div>
     </div>
 
-    <!-- Projects Grid -->
-    <div class="grid md:grid-cols-2 gap-6">
+    <!-- Grid -->
+    <div class="grid md:grid-cols-2 gap-5">
 
       <!-- Spot Strength -->
-      <div class="glass-card rounded-xl p-8 group reveal-on-scroll">
-        <div class="flex items-start justify-between mb-4">
-          <div class="w-10 h-10 rounded-lg bg-[#00e5a0]/10 flex items-center justify-center">
-            <i class="fa-solid fa-dumbbell text-[#00e5a0] text-sm"></i>
+      <div class="card p-7 group reveal">
+        <div class="flex items-start justify-between mb-5">
+          <div class="w-9 h-9 rounded-lg bg-[#2563eb]/[0.08] flex items-center justify-center">
+            <i class="fa-solid fa-dumbbell text-[#2563eb] text-xs"></i>
           </div>
-          <span class="font-mono text-[10px] tracking-wider uppercase text-white/20 bg-white/5 px-2 py-1 rounded">iOS App</span>
+          <span class="tag">iOS App</span>
         </div>
-        <h3 class="text-lg font-semibold text-white mb-2 group-hover:text-[#00e5a0] transition-colors">Spot Strength</h3>
-        <p class="text-white/40 text-sm leading-relaxed mb-4">
-          A native iOS strength-training application built end-to-end. Backend services, authentication,
-          data models, and a custom admin platform for non-technical domain experts. Built with AI-assisted
-          development using Claude Code.
+        <h3 class="font-display font-bold text-[#1a1a1a] mb-2 group-hover:text-[#2563eb] transition-colors">Spot Strength</h3>
+        <p class="text-[#5c5c5c] text-sm leading-relaxed mb-5">
+          Native iOS strength-training app built end-to-end. Backend services, auth, data models, and
+          a custom admin platform for non-technical domain experts. Built with Claude Code.
         </p>
-        <div class="flex flex-wrap gap-2">
-          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">Swift</span>
-          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">iOS</span>
-          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">Claude Code</span>
-          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">Backend API</span>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="tag-accent">Swift</span>
+          <span class="tag-accent">iOS</span>
+          <span class="tag-accent">Claude Code</span>
+          <span class="tag-accent">Backend API</span>
         </div>
       </div>
 
       <!-- SlackGPT -->
-      <a href="https://github.com/jacewalker/slack-gpt" target="_blank" class="glass-card rounded-xl p-8 group block reveal-on-scroll">
-        <div class="flex items-start justify-between mb-4">
-          <div class="w-10 h-10 rounded-lg bg-[#00e5a0]/10 flex items-center justify-center">
-            <i class="fa-brands fa-slack text-[#00e5a0] text-sm"></i>
+      <a href="https://github.com/jacewalker/slack-gpt" target="_blank" class="card p-7 group block reveal">
+        <div class="flex items-start justify-between mb-5">
+          <div class="w-9 h-9 rounded-lg bg-[#2563eb]/[0.08] flex items-center justify-center">
+            <i class="fa-brands fa-slack text-[#2563eb] text-xs"></i>
           </div>
           <div class="flex items-center gap-2">
-            <span class="font-mono text-[10px] tracking-wider uppercase text-white/20 bg-white/5 px-2 py-1 rounded">Open Source</span>
-            <i class="fa-solid fa-arrow-up-right-from-square text-white/20 text-xs group-hover:text-[#00e5a0] transition-colors"></i>
+            <span class="tag">Open Source</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-[#9a9a9a] text-[10px] group-hover:text-[#2563eb] transition-colors"></i>
           </div>
         </div>
-        <h3 class="text-lg font-semibold text-white mb-2 group-hover:text-[#00e5a0] transition-colors">SlackGPT</h3>
-        <p class="text-white/40 text-sm leading-relaxed mb-4">
-          A Go application integrating the Slack API with GPT-3 for team conversations. Responds in threads
-          with context-aware answers by maintaining conversation history.
+        <h3 class="font-display font-bold text-[#1a1a1a] mb-2 group-hover:text-[#2563eb] transition-colors">SlackGPT</h3>
+        <p class="text-[#5c5c5c] text-sm leading-relaxed mb-5">
+          Go application integrating the Slack API with GPT-3 for team conversations. Thread-aware
+          with conversation history for context-aware responses.
         </p>
-        <div class="flex flex-wrap gap-2">
-          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">Go</span>
-          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">Slack API</span>
-          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">GPT-3</span>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="tag-accent">Go</span>
+          <span class="tag-accent">Slack API</span>
+          <span class="tag-accent">GPT-3</span>
         </div>
       </a>
 
-      <!-- UniFi Mass Adoption -->
-      <div class="glass-card rounded-xl p-8 group reveal-on-scroll">
-        <div class="flex items-start justify-between mb-4">
-          <div class="w-10 h-10 rounded-lg bg-[#00e5a0]/10 flex items-center justify-center">
-            <i class="fa-solid fa-network-wired text-[#00e5a0] text-sm"></i>
+      <!-- UniFi -->
+      <div class="card p-7 group reveal">
+        <div class="flex items-start justify-between mb-5">
+          <div class="w-9 h-9 rounded-lg bg-[#2563eb]/[0.08] flex items-center justify-center">
+            <i class="fa-solid fa-network-wired text-[#2563eb] text-xs"></i>
           </div>
-          <span class="font-mono text-[10px] tracking-wider uppercase text-white/20 bg-white/5 px-2 py-1 rounded">Private</span>
+          <span class="tag">Private</span>
         </div>
-        <h3 class="text-lg font-semibold text-white mb-2 group-hover:text-[#00e5a0] transition-colors">UniFi Mass Adoption</h3>
-        <p class="text-white/40 text-sm leading-relaxed mb-4">
-          Automated tool for discovering and adopting all Ubiquiti UniFi devices on a network concurrently.
-          During testing, 5 Access Points were discovered and adopted in under 3 seconds.
+        <h3 class="font-display font-bold text-[#1a1a1a] mb-2 group-hover:text-[#2563eb] transition-colors">UniFi Mass Adoption</h3>
+        <p class="text-[#5c5c5c] text-sm leading-relaxed mb-5">
+          Automated network tool for discovering and adopting all Ubiquiti UniFi devices concurrently.
+          5 APs discovered and adopted in under 3 seconds during testing.
         </p>
-        <div class="flex flex-wrap gap-2">
-          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">Go</span>
-          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">Networking</span>
-          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">Concurrency</span>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="tag-accent">Go</span>
+          <span class="tag-accent">Networking</span>
+          <span class="tag-accent">Concurrency</span>
         </div>
       </div>
 
       <!-- inker.ink -->
-      <a href="https://github.com/jacewalker/inker.ink" target="_blank" class="glass-card rounded-xl p-8 group block reveal-on-scroll">
-        <div class="flex items-start justify-between mb-4">
-          <div class="w-10 h-10 rounded-lg bg-[#00e5a0]/10 flex items-center justify-center">
-            <i class="fa-solid fa-link text-[#00e5a0] text-sm"></i>
+      <a href="https://github.com/jacewalker/inker.ink" target="_blank" class="card p-7 group block reveal">
+        <div class="flex items-start justify-between mb-5">
+          <div class="w-9 h-9 rounded-lg bg-[#2563eb]/[0.08] flex items-center justify-center">
+            <i class="fa-solid fa-link text-[#2563eb] text-xs"></i>
           </div>
           <div class="flex items-center gap-2">
-            <span class="font-mono text-[10px] tracking-wider uppercase text-white/20 bg-white/5 px-2 py-1 rounded">Open Source</span>
-            <i class="fa-solid fa-arrow-up-right-from-square text-white/20 text-xs group-hover:text-[#00e5a0] transition-colors"></i>
+            <span class="tag">Open Source</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-[#9a9a9a] text-[10px] group-hover:text-[#2563eb] transition-colors"></i>
           </div>
         </div>
-        <h3 class="text-lg font-semibold text-white mb-2 group-hover:text-[#00e5a0] transition-colors">inker.ink</h3>
-        <p class="text-white/40 text-sm leading-relaxed mb-4">
-          A fast, self-hosted URL shortening service written in Go using Gin. Designed for custom domains
-          with a clean, minimal interface.
+        <h3 class="font-display font-bold text-[#1a1a1a] mb-2 group-hover:text-[#2563eb] transition-colors">inker.ink</h3>
+        <p class="text-[#5c5c5c] text-sm leading-relaxed mb-5">
+          Self-hosted URL shortening service written in Go with Gin. Designed for custom domains
+          with a fast, minimal interface.
         </p>
-        <div class="flex flex-wrap gap-2">
-          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">Go</span>
-          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">Gin</span>
-          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">Self-Hosted</span>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="tag-accent">Go</span>
+          <span class="tag-accent">Gin</span>
+          <span class="tag-accent">Self-Hosted</span>
         </div>
       </a>
 
