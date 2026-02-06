@@ -16,12 +16,7 @@ func main() {
 
 	r := gin.New()
 	r.LoadHTMLGlob("./views/*/*.html")
-	r.StaticFile("/assets/imgs/jace-cartoon.jpeg", "./assets/imgs/jace-cartoon.jpeg")
-	r.StaticFile("/assets/imgs/jace-gage.jpeg", "./assets/imgs/jace-gage.jpeg")
-	r.StaticFile("/assets/imgs/jace-nat.jpeg", "./assets/imgs/jace-nat.jpeg")
-	r.StaticFile("/assets/imgs/jace-plane.jpeg", "./assets/imgs/jace-plane.jpeg")
-	r.StaticFile("/assets/imgs/jace-tesla.jpeg", "./assets/imgs/jace-tesla.jpeg")
-	r.StaticFile("/assets/output.css", "./assets/output.css")
+	r.Static("/assets", "./assets")
 	r.GET("/", routes.IndexRoute)
 	r.GET("/about", routes.AboutMeRoute)
 	r.GET("/projects", routes.ProjectsRoute)
