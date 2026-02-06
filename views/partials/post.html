@@ -1,13 +1,19 @@
-<div class="min-h-screen bg-gray-100 py-4 flex flex-col justify-center relative overflow-hidden lg:py-8" id="post-content">
-    <div class="relative w-full px-6 py-12 bg-white shadow-xl shadow-slate-700/10 ring-1 ring-gray-900/5 md:max-w-3xl md:mx-auto lg:max-w-4xl lg:pt-16 lg:pb-28">
-        <div class="max-w-prose mx-auto lg:text-xl">
-            <div class="p-8 ml-12 mx-auto w-full-xl">
-                <h2 class="font-medium text-center"> {{ .Title }} </h2>
-                <br>
-                <article class="prose prose-slate">
-                    {{ .Content }}
-                </article>
-            </div>
-        </div>
+<section class="pt-32 pb-20 min-h-screen">
+  <div class="max-w-3xl mx-auto px-6">
+    <!-- Back link -->
+    <a href="/posts" class="inline-flex items-center gap-2 font-mono text-xs text-white/30 hover:text-[#00e5a0] transition-colors mb-12 reveal-on-scroll">
+      <i class="fa-solid fa-arrow-left text-[10px]"></i>
+      Back to posts
+    </a>
+
+    <!-- Title -->
+    <h1 class="font-serif text-3xl sm:text-4xl text-white mb-12 leading-tight reveal-on-scroll">{{ .Title }}</h1>
+
+    <!-- Content -->
+    <div class="glass-card rounded-xl p-8 sm:p-12 reveal-on-scroll">
+      <article class="prose prose-lg max-w-none">
+        {{ .Content }}
+      </article>
     </div>
-</div>
+  </div>
+</section>

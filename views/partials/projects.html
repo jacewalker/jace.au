@@ -1,195 +1,118 @@
-<article class="p-32">
-    <div class="flex items-center gap-4">
-        <img alt="Developer" src="/assets/imgs/jace-cartoon.jpeg" class="h-16 w-16 rounded-full object-cover" />
+<section class="pt-32 pb-20">
+  <div class="max-w-6xl mx-auto px-6">
 
-        <div>
-            <h3 class="text-lg font-medium">Jace Walker</h3>
-
-            <div class="flow-root">
-                <ul class="-m-1 flex flex-wrap">
-                    <li class="p-1 leading-none">
-                        <a href="https://github.com/jacewalker" target="_blank"
-                            class="text-xs font-medium text-gray-700"> GitHub </a>
-                    </li>
-
-                    <li class="p-1 leading-none">
-                        <a href="https://www.linkedin.com/in/jacewalker/" target="_blank"
-                            class="text-xs font-medium text-gray-700">LinkedIn</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+    <!-- Header -->
+    <div class="mb-16 reveal-on-scroll">
+      <span class="font-mono text-xs tracking-widest uppercase text-[#00e5a0]/70">Projects</span>
+      <h2 class="font-serif text-4xl sm:text-5xl mt-4 leading-tight">
+        Things I've <span class="gradient-text">built.</span>
+      </h2>
+      <div class="accent-line w-24 mt-6"></div>
     </div>
 
-    <!-- <ul class="mt-4 space-y-2">
-        <li>
-            <a target="_blank" href="https://github.com/jacewalker/slack-gpt"
-                class="block h-full rounded-lg border border-gray-700 p-4 hover:border-pink-600">
-                <strong class="font-medium">SlackGPT</strong>
-
-                <p class="mt-1 text-xs font-medium text-gray-700">
-                    An application written in Go that allowed my team to pose questions in a Slack Channel that GPT-3
-                    would respond to.
-                </p>
-                <p class="mt-1 text-xs font-medium text-gray-700">
-                    Developing with the Slack API and ensuring the application would respond in Slack threads and
-                    remember the conversation history in order to provide context-aware answers.
-                </p>
-                <p class="mt-1 text-xs font-medium text-gray-700">
-                    Click to view the Github repository.
-                </p>
-            </a>
-        </li>
-
-        <li>
-            <a target="_blank" href="https://github.com/jacewalker/unifi-adoption"
-                class="block h-full rounded-lg border border-gray-700 p-4 hover:border-pink-600">
-                <strong class="font-medium">UniFi Mass Adoption</strong>
-
-                <p class="mt-1 text-xs font-medium text-gray-700">
-                    I'm quite a lazy person and manually adopting Ubiquiti gear by launching the Ubiquiti Chrome Tool
-                    and giving each device 2-4mins of attention to adopt was not something I enjoyed too often.
-                </p>
-                <p class="mt-1 text-xs font-medium text-gray-700">
-                    I had to automate it. The Unifi Mass Adoption tool will:
-                </p>
-                <ul class="list-disc mt-1 pl-5 text-xs font-medium text-gray-700">
-                    <li>Scan all connected subnets</li>
-                    <li>Identify all Ubiquiti equipment</li>
-                    <li>Check if the device is adopted</li>
-                    <li>Adopt the device to my specified controller</li>
-                    <li>Do this concurrently for all the speed.</li>
-                </ul>
-                <p class="mt-1 text-xs font-medium text-gray-700">
-                    During testing, we successfully found & adopted 5 Ubiquiti Access Points in &lt;3 seconds. 
-                </p>
-                <p class="mt-1 text-xs font-medium text-gray-700">
-                    Click to view the Github repository.
-                </p>
-            </a>
-        </li>
-
-        <li>
-            <a target="_blank" href="https://github.com/jacewalker/inker.ink"
-                class="block h-full rounded-lg border border-gray-700 p-4 hover:border-pink-600">
-                <strong class="font-medium">inker.ink: A URL Shortener</strong>
-
-                <p class="mt-1 text-xs font-medium text-gray-700">
-                    https://inker.ink is a fast web app designed for you to self-host your own URL shortening website on
-                    your custom domain. Written in Go using Gin.
-                </p>
-                <p class="mt-1 text-xs font-medium text-gray-700">
-                    Click to view the Github repository.
-                </p>
-            </a>
-        </li>
-    </ul> -->
-
-    <div class="grid lg:grid-cols-2 md:grid-cols-1 gap-4 mt-6">
-        <div>
-            <a target="_blank" href="https://github.com/jacewalker/slack-gpt"
-                class="block lg:h-44 md:h-64 rounded-lg border border-gray-700 p-4 hover:border-pink-600 w-128">
-                <strong class="font-medium">SlackGPT</strong>
-
-                <p class="mt-1 text-xs font-medium text-gray-700">
-                    An application written in Go that allowed my team to pose questions in a Slack Channel that GPT-3
-                    would respond to.
-                </p>
-                <p class="mt-1 text-xs font-medium text-gray-700">
-                    Developing with the Slack API and ensuring the application would respond in Slack threads and
-                    remember the conversation history in order to provide context-aware answers.
-                </p>
-                <p class="mt-2 text-xs font-medium text-gray-700">
-                    Click to view the Github repository.
-                </p>
-            </a>
+    <!-- Author Card -->
+    <div class="flex items-center gap-4 mb-12 reveal-on-scroll">
+      <img alt="Jace Walker" src="/assets/imgs/jace-cartoon.jpeg" class="w-12 h-12 rounded-full object-cover" style="filter: grayscale(20%);" />
+      <div>
+        <p class="text-white font-medium text-sm">Jace Walker</p>
+        <div class="flex gap-4 mt-1">
+          <a href="https://github.com/jacewalker" target="_blank" class="font-mono text-xs text-white/30 hover:text-[#00e5a0] transition-colors">GitHub</a>
+          <a href="https://www.linkedin.com/in/jacewalker/" target="_blank" class="font-mono text-xs text-white/30 hover:text-[#00e5a0] transition-colors">LinkedIn</a>
         </div>
-
-        <div>
-            <a target="_blank" href="https://github.com/jacewalker/unifi-adoption"
-                class="block lg:h-44 md:h-64 rounded-lg border border-gray-700 p-4 hover:border-pink-600">
-                <strong class="font-medium">UniFi Mass Adoption</strong>
-
-                <p class="mt-1 text-xs font-medium text-gray-700">
-                    I'm quite a lazy person and manually adopting Ubiquiti gear by launching the Ubiquiti Chrome Tool
-                    and giving each device 2-4mins of attention to adopt was not something I enjoyed too often.
-                </p>
-                <p class="mt-1 text-xs font-medium text-gray-700">
-                    I had to automate it. This tool will discover and adopt all UniFi devices on the network within a
-                    few seconds. All concurrently.
-                </p>
-                <p class="mt-2 text-xs font-medium text-gray-700">
-                    This tool is currently private and cannot be viewed.
-                </p>
-            </a>
-        </div>
-
-        <!-- <div>
-            <a target="_blank" href=""
-                class="block lg:h-44 md:h-64 rounded-lg border border-gray-700 p-4 hover:border-pink-600">
-                <strong class="font-medium">VMware Migration to Azure Cloud</strong>
-
-                <p class="mt-1 text-xs font-medium text-gray-700">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia vitae, quas deserunt doloribus
-                    laborum dolor possimus ad. Maxime possimus repellat quasi ut quo, quaerat consequuntur
-                    necessitatibus cumque porro commodi velit.
-                </p>
-            </a>
-        </div> -->
-
-        <!-- <div>
-            <a target="_blank" href=""
-                class="block lg:h-44 md:h-64 rounded-lg border border-gray-700 p-4 hover:border-pink-600">
-                <strong class="font-medium">Automating Bitwarden Deployment with Ansible</strong>
-
-                <p class="mt-1 text-xs font-medium text-gray-700">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia vitae, quas deserunt doloribus
-                    laborum dolor possimus ad. Maxime possimus repellat quasi ut quo, quaerat consequuntur
-                    necessitatibus cumque porro commodi velit.
-                </p>
-            </a>
-        </div> -->
-
-        <!-- <div>
-            <a target="_blank" href=""
-                class="block lg:h-44 md:h-64 rounded-lg border border-gray-700 p-4 hover:border-pink-600">
-                <strong class="font-medium">Migrating to SharePoint Online</strong>
-
-                <p class="mt-1 text-xs font-medium text-gray-700">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia vitae, quas deserunt doloribus
-                    laborum dolor possimus ad. Maxime possimus repellat quasi ut quo, quaerat consequuntur
-                    necessitatibus cumque porro commodi velit.
-                </p>
-            </a>
-        </div> -->
-
-        <div>
-            <a target="_blank" href="https://github.com/jacewalker/inker.ink"
-                class="block lg:h-44 md:h-64 rounded-lg border border-gray-700 p-4 hover:border-pink-600">
-                <strong class="font-medium">inker.ink: A URL Shortener</strong>
-
-                <p class="mt-1 text-xs font-medium text-gray-700">
-                    https://inker.ink is a fast web app designed for you to self-host your own URL shortening website on
-                    your custom domain. Written in Go using Gin.
-                </p>
-                <p class="mt-2 text-xs font-medium text-gray-700">
-                    Click to view the Github repository.
-                </p>
-            </a>
-        </div>
-
-        <!-- <div>
-            <a target="_blank" href=""
-                class="block lg:h-44 md:h-64 rounded-lg border border-gray-700 p-4 hover:border-pink-600">
-                <strong class="font-medium">Writing this website: Go with Gin</strong>
-
-                <p class="mt-1 text-xs font-medium text-gray-700">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia vitae, quas deserunt doloribus
-                    laborum dolor possimus ad. Maxime possimus repellat quasi ut quo, quaerat consequuntur
-                    necessitatibus cumque porro commodi velit.
-                </p>
-            </a>
-        </div> -->
+      </div>
     </div>
 
-</article>
+    <!-- Projects Grid -->
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <!-- Spot Strength -->
+      <div class="glass-card rounded-xl p-8 group reveal-on-scroll">
+        <div class="flex items-start justify-between mb-4">
+          <div class="w-10 h-10 rounded-lg bg-[#00e5a0]/10 flex items-center justify-center">
+            <i class="fa-solid fa-dumbbell text-[#00e5a0] text-sm"></i>
+          </div>
+          <span class="font-mono text-[10px] tracking-wider uppercase text-white/20 bg-white/5 px-2 py-1 rounded">iOS App</span>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2 group-hover:text-[#00e5a0] transition-colors">Spot Strength</h3>
+        <p class="text-white/40 text-sm leading-relaxed mb-4">
+          A native iOS strength-training application built end-to-end. Backend services, authentication,
+          data models, and a custom admin platform for non-technical domain experts. Built with AI-assisted
+          development using Claude Code.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">Swift</span>
+          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">iOS</span>
+          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">Claude Code</span>
+          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">Backend API</span>
+        </div>
+      </div>
+
+      <!-- SlackGPT -->
+      <a href="https://github.com/jacewalker/slack-gpt" target="_blank" class="glass-card rounded-xl p-8 group block reveal-on-scroll">
+        <div class="flex items-start justify-between mb-4">
+          <div class="w-10 h-10 rounded-lg bg-[#00e5a0]/10 flex items-center justify-center">
+            <i class="fa-brands fa-slack text-[#00e5a0] text-sm"></i>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-[10px] tracking-wider uppercase text-white/20 bg-white/5 px-2 py-1 rounded">Open Source</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-white/20 text-xs group-hover:text-[#00e5a0] transition-colors"></i>
+          </div>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2 group-hover:text-[#00e5a0] transition-colors">SlackGPT</h3>
+        <p class="text-white/40 text-sm leading-relaxed mb-4">
+          A Go application integrating the Slack API with GPT-3 for team conversations. Responds in threads
+          with context-aware answers by maintaining conversation history.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">Go</span>
+          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">Slack API</span>
+          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">GPT-3</span>
+        </div>
+      </a>
+
+      <!-- UniFi Mass Adoption -->
+      <div class="glass-card rounded-xl p-8 group reveal-on-scroll">
+        <div class="flex items-start justify-between mb-4">
+          <div class="w-10 h-10 rounded-lg bg-[#00e5a0]/10 flex items-center justify-center">
+            <i class="fa-solid fa-network-wired text-[#00e5a0] text-sm"></i>
+          </div>
+          <span class="font-mono text-[10px] tracking-wider uppercase text-white/20 bg-white/5 px-2 py-1 rounded">Private</span>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2 group-hover:text-[#00e5a0] transition-colors">UniFi Mass Adoption</h3>
+        <p class="text-white/40 text-sm leading-relaxed mb-4">
+          Automated tool for discovering and adopting all Ubiquiti UniFi devices on a network concurrently.
+          During testing, 5 Access Points were discovered and adopted in under 3 seconds.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">Go</span>
+          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">Networking</span>
+          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">Concurrency</span>
+        </div>
+      </div>
+
+      <!-- inker.ink -->
+      <a href="https://github.com/jacewalker/inker.ink" target="_blank" class="glass-card rounded-xl p-8 group block reveal-on-scroll">
+        <div class="flex items-start justify-between mb-4">
+          <div class="w-10 h-10 rounded-lg bg-[#00e5a0]/10 flex items-center justify-center">
+            <i class="fa-solid fa-link text-[#00e5a0] text-sm"></i>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-[10px] tracking-wider uppercase text-white/20 bg-white/5 px-2 py-1 rounded">Open Source</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-white/20 text-xs group-hover:text-[#00e5a0] transition-colors"></i>
+          </div>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2 group-hover:text-[#00e5a0] transition-colors">inker.ink</h3>
+        <p class="text-white/40 text-sm leading-relaxed mb-4">
+          A fast, self-hosted URL shortening service written in Go using Gin. Designed for custom domains
+          with a clean, minimal interface.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">Go</span>
+          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">Gin</span>
+          <span class="font-mono text-[10px] text-[#00e5a0]/60 bg-[#00e5a0]/10 px-2 py-1 rounded">Self-Hosted</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>

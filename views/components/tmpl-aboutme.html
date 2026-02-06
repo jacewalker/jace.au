@@ -1,16 +1,11 @@
-<html>
-
+<html lang="en">
 <head>
     {{ template "header.html" }}
 </head>
-
 <body>
-    <div class="grid grid-cols-6">
-        {{ template "menu.html" .}}
-        <main class="col-span-5">
-            {{ template "aboutme.html" .}}
-        </main>
-    </div>
+    {{ template "menu.html" .}}
+    <main>
+        {{ template "aboutme.html" .}}
+    </main>
 </body>
-
 </html>

@@ -1,8 +1,11 @@
-<html>
-    <head>
-        {{ template "header.html" }}
-    </head>
-    <body>
+<html lang="en">
+<head>
+    {{ template "header.html" }}
+</head>
+<body>
+    {{ template "menu.html" .}}
+    <main>
         {{ template "404.html" }}
-    </body>
+    </main>
+</body>
 </html>

@@ -1,13 +1,11 @@
-<html>
-    <head>
-        {{ template "header.html" }}
-    </head>
+<html lang="en">
+<head>
+    {{ template "header.html" }}
+</head>
 <body>
-    <div class="grid grid-cols-6">
-            {{ template "menu.html" .}}
-        <main class="col-span-5 h-full">
-            {{ template "contact.html" .}}
-        </main>
-    </div>
+    {{ template "menu.html" .}}
+    <main>
+        {{ template "contact.html" .}}
+    </main>
 </body>
 </html>

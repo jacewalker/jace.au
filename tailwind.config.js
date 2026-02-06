@@ -10,7 +10,16 @@ module.exports = {
       'xl': '1280px',
       '2xl': '1536px',
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        'serif': ['Instrument Serif', 'serif'],
+        'sans': ['Outfit', 'sans-serif'],
+        'mono': ['JetBrains Mono', 'monospace'],
+      },
+      colors: {
+        'accent': '#00e5a0',
+      },
+    },
   },
   plugins: [
     require('@tailwindcss/typography'),

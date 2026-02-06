@@ -1,147 +1,87 @@
-<aside class="col-span-1 h-screen sticky top-0" id="menubar-parent">
-    <button
-        class="xl:hidden fixed top-4 left-4 z-50 p-4 bg-white rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        id="toggle-sidebar">
-        <i class="fa-solid fa-bars"></i>
-    </button>
+<nav class="fixed top-0 left-0 right-0 z-50 glass" id="main-nav">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="flex items-center justify-between h-16">
+            <!-- Logo -->
+            <a href="/" class="flex items-center gap-3 group">
+                <div class="glow-dot"></div>
+                <span class="font-mono text-sm tracking-wider text-white/90 group-hover:text-white transition-colors">jace.au</span>
+            </a>
 
-    <div class="flex flex-col" id="menubar-content">
-        <div class="flex xl:flex h-screen flex-col justify-between border-r bg-white md:sticky hidden xl:block"
-            id="sidebar">
-            <div class="px-4 py-6">
-                <nav aria-label="Main Nav" class="mt-6 flex flex-col space-y-1 text-gray-500">
-                    <a href="/" class="flex items-center gap-2 rounded-lg hover:bg-gray-100 px-4 py-2">
-                        <i class="fa-solid fa-house-chimney h-5 w-5 opacity-75"></i>
-                        <span class="text-sm font-medium"> Home </span>
-                    </a>
-
-                    <a href="/about"
-                        class="flex items-center gap-2 rounded-lg px-4 py-2  hover:bg-gray-100 hover:text-gray-700">
-                        <i class="fa-solid fa-circle-info"></i>
-
-                        <span class="text-sm font-medium">About Me </span>
-                    </a>
-                    <a href="/projects"
-                        class="flex items-center gap-2 rounded-lg px-4 py-2  hover:bg-gray-100 hover:text-gray-700">
-                        <i class="fa-solid fa-bars-progress"></i>
-
-                        <span class="text-sm font-medium"> Projects </span>
-                    </a>
-
-                    <!-- <a href="/posts"
-                        class="flex items-center gap-2 rounded-lg px-4 py-2  hover:bg-gray-100 hover:text-gray-700">
-                        <i class="fa-solid fa-scroll"></i>
-
-                        <span class="text-sm font-medium"> Posts </span>
-                    </a> -->
-
-                    <!-- {{ template "tools-menu.html" .}} -->
-
-                    <a href="/contact"
-                        class="flex items-center gap-2 rounded-lg px-4 py-2  hover:bg-gray-100 hover:text-gray-700">
-                        <i class="fa-solid fa-envelope"></i>
-
-                        <span class="text-sm font-medium"> Contact </span>
-                    </a>
-                </nav>
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="/" class="nav-link font-mono text-xs tracking-widest uppercase text-white/50 hover:text-white transition-all duration-300" data-path="/">Home</a>
+                <a href="/about" class="nav-link font-mono text-xs tracking-widest uppercase text-white/50 hover:text-white transition-all duration-300" data-path="/about">About</a>
+                <a href="/projects" class="nav-link font-mono text-xs tracking-widest uppercase text-white/50 hover:text-white transition-all duration-300" data-path="/projects">Projects</a>
+                <a href="/contact" class="nav-link font-mono text-xs tracking-widest uppercase text-white/50 hover:text-white transition-all duration-300" data-path="/contact">Contact</a>
             </div>
 
-            <div class="sticky inset-x-0 bottom-0 border-t border-gray-100">
-                <a class="flex items-center gap-2 bg-white pb-4 pl-2 pr-2 hover:bg-gray-50">
-                    <div class="pl-2 flex items-center">
-                        <img alt="Jace Walker"
-                            src="https://media.licdn.com/dms/image/C5603AQGAW5xc6KoajA/profile-displayphoto-shrink_800_800/0/1607331951161?e=1684368000&v=beta&t=f53LYi7AVGwtkiO9LAY3R8L8D9XDzshnP--SVdSjR7o"
-                            class="h-10 w-10 rounded-full object-cover" />
-                        <div class="ml-1">
-                            <p class="text-xs">
-                                <strong class="block font-medium">Jace Walker</strong>
-                                <span> its@jace.au </span>
-                            </p>
-                        </div>
-                        <div class="flex items-center ml-auto pb-4">
-                            <a href="https://www.linkedin.com/in/jacewalker/" class="mr-2">
-                                <i class="fa-brands fa-linkedin"></i>
-                            </a>
-                            <a href="https://github.com/jacewalker" class="mr-2">
-                                <i class="fa-brands fa-github"></i>
-                            </a>
-                            <a href="https://www.instagram.com/jacewalker" class="mr-2">
-                                <i class="fa-brands fa-instagram"></i>
-                            </a>
-                            <a href="https://www.facebook.com/jacceewalker" class="mr-2">
-                                <i class="fa-brands fa-facebook"></i>
-                            </a>
-                        </div>
-                    </div>
+            <!-- Social Icons -->
+            <div class="hidden md:flex items-center gap-4">
+                <a href="https://www.linkedin.com/in/jacewalker/" target="_blank" class="text-white/30 hover:text-[#00e5a0] transition-colors duration-300 text-sm">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/jacewalker" target="_blank" class="text-white/30 hover:text-[#00e5a0] transition-colors duration-300 text-sm">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button class="md:hidden text-white/70 hover:text-white transition-colors p-2" id="mobile-toggle" aria-label="Menu">
+                <i class="fa-solid fa-bars text-lg" id="menu-icon"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="md:hidden hidden" id="mobile-menu">
+        <div class="px-6 py-6 border-t border-white/5 space-y-1">
+            <a href="/" class="mobile-nav-link block py-3 font-mono text-sm tracking-wider text-white/50 hover:text-white hover:pl-2 transition-all duration-300">Home</a>
+            <a href="/about" class="mobile-nav-link block py-3 font-mono text-sm tracking-wider text-white/50 hover:text-white hover:pl-2 transition-all duration-300">About</a>
+            <a href="/projects" class="mobile-nav-link block py-3 font-mono text-sm tracking-wider text-white/50 hover:text-white hover:pl-2 transition-all duration-300">Projects</a>
+            <a href="/contact" class="mobile-nav-link block py-3 font-mono text-sm tracking-wider text-white/50 hover:text-white hover:pl-2 transition-all duration-300">Contact</a>
+            <div class="flex items-center gap-5 pt-4 border-t border-white/5">
+                <a href="https://www.linkedin.com/in/jacewalker/" target="_blank" class="text-white/30 hover:text-[#00e5a0] transition-colors">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/jacewalker" target="_blank" class="text-white/30 hover:text-[#00e5a0] transition-colors">
+                    <i class="fa-brands fa-github"></i>
                 </a>
             </div>
         </div>
     </div>
-</aside>
-
+</nav>
 
 <script>
-    // Function to highlight the active menu item
-    function highlightActiveLink() {
-        // Get all the menu links
-        const menuLinks = document.querySelectorAll('#sidebar nav a');
-
-        // Loop through the menu links and update their classes
-        menuLinks.forEach(link => {
-            // If the link's href matches the current URL path, add the active classes
-            if (link.getAttribute('href') === window.location.pathname) {
-                link.classList.add('bg-gray-100', 'text-gray-800');
-            } else {
-                // Otherwise, remove the active classes
-                link.classList.remove('bg-gray-100', 'text-gray-800');
-            }
-        });
-    }
-
-    // Call the function to highlight the active link on page load
-    highlightActiveLink();
-
-    // Add an event listener for the popstate event (when the URL changes)
-    window.addEventListener('popstate', highlightActiveLink);
-
-    // Get the sidebar and the toggle button
-    const sidebar = document.getElementById('sidebar');
-    const toggleSidebarButton = document.getElementById('toggle-sidebar');
-    const menuBarAside = document.getElementById('menubar-parent')
-    const menuBarDiv = document.getElementById('menubar-content');
-
-    // Add an event listener for the click event on the toggle button
-    toggleSidebarButton.addEventListener('click', () => {
-        // Toggle the 'hidden' and 'block' classes on the sidebar
-        menuBarAside.classList.toggle('col-span-6');
-        sidebar.classList.toggle('hidden');
-        sidebar.classList.toggle('block');
-    });
-
-    // Add an event listener for the click event on the sidebar links
-    document.querySelectorAll('#sidebar nav a').forEach(link => {
-        link.addEventListener('click', () => {
-            // Collapse the sidebar on smaller screens after clicking a link
-            if (!sidebar.classList.contains('xl:block')) {
-                sidebar.classList.add('hidden');
-                sidebar.classList.remove('block');
-                menuBarAside.classList.remove('col-span-6');
-            }
-
-            if (menuBarAside.classList.contains('col-span-6')) {
-                menuBarAside.classList.remove('col-span-6');
-            }
-        });
-    });
-
-    // If the window width is greater than a certain breakpoint value, remove 'col-span-6' from menuBarAside
-
-
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 900) { // Adjust the breakpoint value as needed
-            menuBarAside.classList.remove('col-span-6');
+    // Highlight active nav link
+    document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+        const path = link.getAttribute('href') || link.getAttribute('data-path');
+        if (path === window.location.pathname) {
+            link.classList.remove('text-white/50');
+            link.classList.add('text-[#00e5a0]');
         }
     });
 
+    // Mobile menu toggle
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
 
+    mobileToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        if (mobileMenu.classList.contains('hidden')) {
+            menuIcon.className = 'fa-solid fa-bars text-lg';
+        } else {
+            menuIcon.className = 'fa-solid fa-xmark text-lg';
+        }
+    });
+
+    // Nav background on scroll
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            nav.style.borderBottom = '1px solid rgba(255,255,255,0.06)';
+        } else {
+            nav.style.borderBottom = 'none';
+        }
+    });
 </script>

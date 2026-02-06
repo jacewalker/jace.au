@@ -1,14 +1,76 @@
-<section class="lg:mt-64 sm:mt-24">
-  <div class="mx-auto max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:py-16 lg:px-8">
-    <div class="grid grid-cols-2 gap-8 lg:gap-16">
-      <div class="relative h-96 overflow-hidden rounded-lg sm:h-80 lg:order-last lg:h-96">
-        <img alt="Jace Walker" src="/assets/imgs/jace-cartoon.jpeg" class="absolute right-0 mr-16 h-full w-96 object-cover rounded-xl"/>
+<section class="min-h-screen flex items-center relative overflow-hidden">
+  <!-- Subtle gradient orbs -->
+  <div class="absolute top-1/4 -left-32 w-96 h-96 bg-[#00e5a0]/5 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-1/4 -right-32 w-96 h-96 bg-[#00b4d8]/5 rounded-full blur-3xl"></div>
+
+  <div class="max-w-6xl mx-auto px-6 py-32 w-full">
+    <div class="grid lg:grid-cols-12 gap-12 items-center">
+
+      <!-- Text Content -->
+      <div class="lg:col-span-7 space-y-8">
+        <!-- Monospace tag -->
+        <div class="animate-fade-up">
+          <span class="font-mono text-xs tracking-widest uppercase text-[#00e5a0]/70">Chief Technology Officer</span>
+        </div>
+
+        <!-- Main headline -->
+        <h1 class="animate-fade-up delay-200">
+          <span class="font-serif text-5xl sm:text-6xl lg:text-7xl leading-[1.1] tracking-tight">
+            I build systems<br>
+            <span class="gradient-text">that scale.</span>
+          </span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-lg sm:text-xl text-white/40 max-w-lg leading-relaxed animate-fade-up delay-400" style="font-weight: 300;">
+          Product & systems builder with 10+ years designing infrastructure, shipping platforms, and leading technical teams. AI-enabled operator.
+        </p>
+
+        <!-- CTA row -->
+        <div class="flex flex-wrap gap-4 animate-fade-up delay-600">
+          <a href="/about" class="btn-primary text-sm">Explore my work</a>
+          <a href="/contact" class="btn-ghost text-sm">Get in touch</a>
+        </div>
+
+        <!-- Quick stats -->
+        <div class="flex gap-12 pt-4 animate-fade-up delay-800">
+          <div>
+            <div class="font-serif text-3xl text-white">10+</div>
+            <div class="font-mono text-xs text-white/30 tracking-wider mt-1">Years</div>
+          </div>
+          <div>
+            <div class="font-serif text-3xl text-white">CTO</div>
+            <div class="font-mono text-xs text-white/30 tracking-wider mt-1">Current Role</div>
+          </div>
+          <div>
+            <div class="font-serif text-3xl text-white">Azure</div>
+            <div class="font-mono text-xs text-white/30 tracking-wider mt-1">Cloud Platform</div>
+          </div>
+        </div>
       </div>
-      <div class="py-24 md:col-span-1 xs:col-span-2">
-        <h2 class="text-3xl font-bold sm:text-4xl">Hello there 👋🏼</h2>
-        <p class="mt-4 text-gray-600"> Welcome to my little place on the internet. </p>
-        <p class="mt-2 text-gray-600">Click around & slide into my <a class="font-bold underline" href="/contact">DMs</a> if you want to chat.</p>
+
+      <!-- Image -->
+      <div class="lg:col-span-5 flex justify-center lg:justify-end animate-fade-up delay-500">
+        <div class="relative">
+          <div class="absolute -inset-1 bg-gradient-to-br from-[#00e5a0]/20 to-transparent rounded-2xl blur-xl"></div>
+          <img
+            alt="Jace Walker"
+            src="/assets/imgs/jace-cartoon.jpeg"
+            class="relative w-72 h-72 sm:w-80 sm:h-80 object-cover rounded-2xl"
+            style="filter: grayscale(20%);"
+          />
+          <!-- Corner accent -->
+          <div class="absolute -bottom-3 -right-3 w-24 h-24 border border-[#00e5a0]/20 rounded-lg"></div>
+          <div class="absolute -top-3 -left-3 w-16 h-16 border border-white/5 rounded-lg"></div>
+        </div>
       </div>
+
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-in delay-1200">
+      <span class="font-mono text-[10px] tracking-widest uppercase text-white/20">Scroll</span>
+      <div class="w-px h-8 bg-gradient-to-b from-white/20 to-transparent animate-scroll-bounce"></div>
     </div>
   </div>
 </section>
