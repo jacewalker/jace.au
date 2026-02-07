@@ -18,24 +18,14 @@
                     <button class="nav-link relative px-3 py-1.5 text-[13px] font-medium text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors flex items-center gap-1" id="tools-trigger">
                         Tools <i class="fa-solid fa-chevron-down text-[8px] transition-transform" id="tools-chevron"></i>
                     </button>
-                    <div class="absolute top-full left-0 mt-1 w-56 bg-white/95 backdrop-blur-lg border border-black/[0.08] rounded-xl shadow-lg shadow-black/[0.04] py-2 hidden opacity-0 transition-all duration-200" id="tools-menu">
-                        <a href="/tools/qr-generator" class="tools-link flex items-center gap-3 px-4 py-2.5 text-sm text-[#5c5c5c] hover:text-[#1a1a1a] hover:bg-black/[0.02] transition-colors">
-                            <div class="w-7 h-7 rounded-md bg-[#2563eb]/[0.08] flex items-center justify-center shrink-0">
-                                <i class="fa-solid fa-qrcode text-[#2563eb] text-[10px]"></i>
-                            </div>
-                            <div>
-                                <div class="font-medium text-[13px]">QR Generator</div>
-                                <div class="font-mono text-[10px] text-[#9a9a9a]">Branded QR codes</div>
-                            </div>
+                    <div class="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 bg-white/95 backdrop-blur-lg border border-black/[0.08] rounded-xl shadow-lg shadow-black/[0.04] py-1.5 hidden opacity-0 transition-all duration-200" style="min-width: 200px;" id="tools-menu">
+                        <a href="/tools/qr-generator" class="tools-link flex items-center gap-2.5 px-4 py-2 text-[#5c5c5c] hover:text-[#1a1a1a] hover:bg-black/[0.02] transition-colors rounded-lg mx-1" style="white-space: nowrap;">
+                            <i class="fa-solid fa-qrcode text-[#2563eb] text-[10px]"></i>
+                            <span class="text-[13px] font-medium">QR Generator</span>
                         </a>
-                        <a href="/tools/salary-sacrifice" class="tools-link flex items-center gap-3 px-4 py-2.5 text-sm text-[#5c5c5c] hover:text-[#1a1a1a] hover:bg-black/[0.02] transition-colors">
-                            <div class="w-7 h-7 rounded-md bg-[#2563eb]/[0.08] flex items-center justify-center shrink-0">
-                                <i class="fa-solid fa-calculator text-[#2563eb] text-[10px]"></i>
-                            </div>
-                            <div>
-                                <div class="font-medium text-[13px]">Salary Sacrifice</div>
-                                <div class="font-mono text-[10px] text-[#9a9a9a]">AU tax calculator</div>
-                            </div>
+                        <a href="/tools/salary-sacrifice" class="tools-link flex items-center gap-2.5 px-4 py-2 text-[#5c5c5c] hover:text-[#1a1a1a] hover:bg-black/[0.02] transition-colors rounded-lg mx-1" style="white-space: nowrap;">
+                            <i class="fa-solid fa-calculator text-[#2563eb] text-[10px]"></i>
+                            <span class="text-[13px] font-medium">Salary Sacrifice</span>
                         </a>
                     </div>
                 </div>
