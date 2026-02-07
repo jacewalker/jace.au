@@ -98,6 +98,18 @@ func ArticlePostRoute(c *gin.Context) {
 
 }
 
+func QRGeneratorRoute(c *gin.Context) {
+	c.HTML(http.StatusOK, "tmpl-qr-generator.html", gin.H{
+		"title": "QR Generator",
+	})
+}
+
+func SalarySacrificeRoute(c *gin.Context) {
+	c.HTML(http.StatusOK, "tmpl-salary-sacrifice.html", gin.H{
+		"title": "Salary Sacrifice Calculator",
+	})
+}
+
 func NotFound(c *gin.Context) {
 	c.HTML(http.StatusNotFound, "tmpl-error404.html", nil)
 }

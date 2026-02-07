@@ -1,0 +1,191 @@
+<section class="pt-28 pb-20 min-h-screen">
+  <div class="max-w-4xl mx-auto px-6">
+
+    <div class="mb-10 animate-fade-up">
+      <span class="tag">Tools</span>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight mt-4">
+        Salary Sacrifice Calculator
+      </h2>
+      <p class="text-[#5c5c5c] text-base leading-relaxed mt-3 max-w-2xl">
+        Calculate the effective discount when purchasing through salary sacrifice. Based on Australian tax brackets (2024-25) including Medicare levy.
+      </p>
+    </div>
+
+    <!-- Inputs Card -->
+    <div class="card p-8 mb-6 reveal">
+      <div class="grid sm:grid-cols-3 gap-6">
+        <div>
+          <label for="ss-salary" class="block font-mono text-[11px] text-[#9a9a9a] mb-2">Annual Salary ($)</label>
+          <input type="number" id="ss-salary" value="80000"
+            class="w-full bg-[#faf9f7] border border-black/[0.08] rounded-lg px-4 py-3 text-sm text-[#1a1a1a] placeholder-[#c5c5c5] focus:border-[#2563eb] focus:outline-none transition-colors" />
+        </div>
+        <div>
+          <label for="ss-price" class="block font-mono text-[11px] text-[#9a9a9a] mb-2">Purchase Price ($)</label>
+          <input type="number" id="ss-price" value="2000"
+            class="w-full bg-[#faf9f7] border border-black/[0.08] rounded-lg px-4 py-3 text-sm text-[#1a1a1a] placeholder-[#c5c5c5] focus:border-[#2563eb] focus:outline-none transition-colors" />
+        </div>
+        <div>
+          <label for="ss-weeks" class="block font-mono text-[11px] text-[#9a9a9a] mb-2">Number of Weeks</label>
+          <input type="number" id="ss-weeks" value="52"
+            class="w-full bg-[#faf9f7] border border-black/[0.08] rounded-lg px-4 py-3 text-sm text-[#1a1a1a] placeholder-[#c5c5c5] focus:border-[#2563eb] focus:outline-none transition-colors" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div class="grid md:grid-cols-2 gap-6 mb-6 reveal">
+      <!-- Normal Pay -->
+      <div class="card p-7">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-8 h-8 rounded-lg bg-black/[0.04] flex items-center justify-center">
+            <i class="fa-solid fa-receipt text-[#5c5c5c] text-xs"></i>
+          </div>
+          <h3 class="font-display font-bold text-[#1a1a1a]">Normal Pay</h3>
+        </div>
+        <div class="space-y-3 text-sm">
+          <div class="flex justify-between items-center">
+            <span class="text-[#5c5c5c]">Weekly Take Home</span>
+            <span class="font-semibold text-[#1a1a1a] font-mono text-xs" id="normal-weekly">$0.00</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-[#5c5c5c]">Earnings (<span id="normal-weeks-label">52</span> weeks)</span>
+            <span class="font-semibold text-[#1a1a1a] font-mono text-xs" id="normal-earnings">$0.00</span>
+          </div>
+          <div class="flex justify-between items-center text-red-500">
+            <span>Less Purchase</span>
+            <span class="font-semibold font-mono text-xs" id="normal-less">-$0.00</span>
+          </div>
+          <div class="h-px bg-black/[0.06]"></div>
+          <div class="flex justify-between items-center pt-1">
+            <span class="font-bold text-[#1a1a1a]">Net After Purchase</span>
+            <span class="font-bold text-[#1a1a1a] font-mono text-sm" id="normal-net">$0.00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Salary Sacrifice -->
+      <div class="card p-7" style="border-color: rgba(37,99,235,0.12); background: linear-gradient(135deg, rgba(37,99,235,0.02), rgba(37,99,235,0.05));">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-8 h-8 rounded-lg bg-[#2563eb]/[0.08] flex items-center justify-center">
+            <i class="fa-solid fa-hand-holding-dollar text-[#2563eb] text-xs"></i>
+          </div>
+          <h3 class="font-display font-bold text-[#1a1a1a]">Salary Sacrifice</h3>
+        </div>
+        <div class="space-y-3 text-sm">
+          <div class="flex justify-between items-center">
+            <span class="text-[#5c5c5c]">Weekly Take Home</span>
+            <span class="font-semibold text-[#1a1a1a] font-mono text-xs" id="sac-weekly">$0.00</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-[#5c5c5c]">Earnings (<span id="sac-weeks-label">52</span> weeks)</span>
+            <span class="font-semibold text-[#1a1a1a] font-mono text-xs" id="sac-earnings">$0.00</span>
+          </div>
+          <div class="flex justify-between items-center text-green-600">
+            <span>Item Included</span>
+            <span class="font-semibold font-mono text-xs">$0.00</span>
+          </div>
+          <div class="h-px bg-[#2563eb]/[0.08]"></div>
+          <div class="flex justify-between items-center pt-1">
+            <span class="font-bold text-[#1a1a1a]">Net After Purchase</span>
+            <span class="font-bold text-[#1a1a1a] font-mono text-sm" id="sac-net">$0.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Benefit Summary -->
+    <div class="reveal" style="background: linear-gradient(135deg, rgba(34,197,94,0.04), rgba(16,185,129,0.08)); border: 2px solid rgba(34,197,94,0.2); border-radius: 16px; padding: 2rem;">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background: rgba(34,197,94,0.1);">
+          <i class="fa-solid fa-arrow-trend-up text-green-600 text-sm"></i>
+        </div>
+        <h3 class="font-display font-bold text-lg text-[#1a1a1a]">Salary Sacrifice Benefit</h3>
+      </div>
+      <div class="space-y-4">
+        <div class="flex justify-between items-center">
+          <span class="text-[#5c5c5c]">Original Price</span>
+          <span class="font-semibold text-[#5c5c5c] font-mono" id="benefit-price">$0.00</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-[#5c5c5c]">Realised Purchase Price</span>
+          <span class="font-bold text-[#2563eb] font-mono text-lg" id="benefit-realised">$0.00</span>
+        </div>
+        <div class="h-px" style="background: rgba(34,197,94,0.15);"></div>
+        <div class="flex justify-between items-center">
+          <span class="text-[#1a1a1a] font-semibold">Effective Discount</span>
+          <span class="font-bold text-green-600 font-mono text-lg" id="benefit-discount">$0.00</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-[#1a1a1a] font-semibold">Discount Percentage</span>
+          <span class="font-bold text-green-600 font-mono text-lg" id="benefit-percent">0.0%</span>
+        </div>
+        <div class="h-px" style="background: rgba(34,197,94,0.15);"></div>
+        <div class="flex justify-between items-center">
+          <span class="text-[#9a9a9a] text-sm">Weekly Sacrifice Amount</span>
+          <span class="text-[#9a9a9a] font-mono text-sm" id="benefit-weekly">$0.00</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function() {
+  function calcTax(income) {
+    let tax = 0;
+    if (income > 190000) tax = 51638 + (income - 190000) * 0.45;
+    else if (income > 135000) tax = 31288 + (income - 135000) * 0.37;
+    else if (income > 45000) tax = 4288 + (income - 45000) * 0.30;
+    else if (income > 18200) tax = (income - 18200) * 0.16;
+    return tax + income * 0.02;
+  }
+
+  function fmt(n) { return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+
+  function calculate() {
+    const salary = parseFloat(document.getElementById('ss-salary').value) || 0;
+    const price = parseFloat(document.getElementById('ss-price').value) || 0;
+    const weeks = parseFloat(document.getElementById('ss-weeks').value) || 1;
+
+    const normalTax = calcTax(salary);
+    const normalTakeHome = salary - normalTax;
+    const normalWeekly = normalTakeHome / 52;
+    const normalEarnings = normalWeekly * weeks;
+    const normalNet = normalEarnings - price;
+
+    const sacWeekly = price / weeks;
+    const adjSalary = salary - (sacWeekly * 52);
+    const sacTax = calcTax(adjSalary);
+    const sacTakeHome = adjSalary - sacTax;
+    const sacWeeklyTH = sacTakeHome / 52;
+    const sacEarnings = sacWeeklyTH * weeks;
+
+    const discount = sacEarnings - normalNet;
+    const discountPct = (discount / price) * 100;
+
+    document.getElementById('normal-weekly').textContent = fmt(normalWeekly);
+    document.getElementById('normal-weeks-label').textContent = weeks;
+    document.getElementById('normal-earnings').textContent = fmt(normalEarnings);
+    document.getElementById('normal-less').textContent = '-' + fmt(price);
+    document.getElementById('normal-net').textContent = fmt(normalNet);
+
+    document.getElementById('sac-weekly').textContent = fmt(sacWeeklyTH);
+    document.getElementById('sac-weeks-label').textContent = weeks;
+    document.getElementById('sac-earnings').textContent = fmt(sacEarnings);
+    document.getElementById('sac-net').textContent = fmt(sacEarnings);
+
+    document.getElementById('benefit-price').textContent = fmt(price);
+    document.getElementById('benefit-realised').textContent = fmt(price - discount);
+    document.getElementById('benefit-discount').textContent = fmt(discount);
+    document.getElementById('benefit-percent').textContent = discountPct.toFixed(1) + '%';
+    document.getElementById('benefit-weekly').textContent = fmt(sacWeekly);
+  }
+
+  ['ss-salary', 'ss-price', 'ss-weeks'].forEach(id => {
+    document.getElementById(id).addEventListener('input', calculate);
+  });
+
+  calculate();
+})();
+</script>

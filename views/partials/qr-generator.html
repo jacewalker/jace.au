@@ -1,0 +1,277 @@
+<section class="pt-28 pb-20 min-h-screen">
+  <div class="max-w-3xl mx-auto px-6">
+
+    <div class="mb-10 animate-fade-up">
+      <span class="tag">Tools</span>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight mt-4">
+        Branded QR Generator
+      </h2>
+      <p class="text-[#5c5c5c] text-base leading-relaxed mt-3 max-w-2xl">
+        Create custom QR codes with your logo, colours, and branding. Uses high error correction for logo compatibility.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-8 reveal">
+      <!-- Controls -->
+      <div class="lg:col-span-5">
+        <div class="card p-7 space-y-5">
+          <!-- URL Input -->
+          <div>
+            <label for="qr-url" class="block font-mono text-[11px] text-[#9a9a9a] mb-2">URL *</label>
+            <input
+              class="w-full bg-[#faf9f7] border border-black/[0.08] rounded-lg px-4 py-3 text-sm text-[#1a1a1a] placeholder-[#c5c5c5] transition-colors focus:border-[#2563eb] focus:outline-none"
+              placeholder="https://example.com"
+              type="url" id="qr-url" value="https://example.com"
+            />
+          </div>
+
+          <!-- Logo Upload -->
+          <div>
+            <label class="block font-mono text-[11px] text-[#9a9a9a] mb-2">Logo (optional)</label>
+            <div class="flex gap-3 items-center">
+              <label class="flex-1 cursor-pointer">
+                <div class="flex items-center justify-center px-4 py-3 bg-[#faf9f7] border border-dashed border-black/[0.12] rounded-lg hover:border-[#2563eb] transition-colors">
+                  <i class="fa-solid fa-cloud-arrow-up text-[#9a9a9a] text-xs mr-2"></i>
+                  <span class="text-[#9a9a9a] text-sm" id="logo-label">Upload logo</span>
+                </div>
+                <input type="file" accept="image/*" id="logo-input" class="hidden" />
+              </label>
+              <div id="logo-preview-wrap" class="hidden flex items-center gap-2">
+                <img id="logo-preview" src="" alt="Logo" class="w-10 h-10 rounded-lg object-cover border border-black/[0.08]" />
+                <button id="clear-logo" class="p-1.5 text-[#9a9a9a] hover:text-red-500 transition-colors text-xs">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Colours -->
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block font-mono text-[11px] text-[#9a9a9a] mb-2">Foreground</label>
+              <div class="flex items-center gap-2">
+                <input type="color" id="fg-color" value="#000000" class="w-9 h-9 rounded-lg cursor-pointer border border-black/[0.08] p-0.5" />
+                <input type="text" id="fg-hex" value="#000000"
+                  class="flex-1 bg-[#faf9f7] border border-black/[0.08] rounded-lg px-3 py-2 text-xs text-[#1a1a1a] font-mono focus:border-[#2563eb] focus:outline-none" />
+              </div>
+            </div>
+            <div>
+              <label class="block font-mono text-[11px] text-[#9a9a9a] mb-2">Background</label>
+              <div class="flex items-center gap-2">
+                <input type="color" id="bg-color" value="#ffffff" class="w-9 h-9 rounded-lg cursor-pointer border border-black/[0.08] p-0.5" />
+                <input type="text" id="bg-hex" value="#ffffff"
+                  class="flex-1 bg-[#faf9f7] border border-black/[0.08] rounded-lg px-3 py-2 text-xs text-[#1a1a1a] font-mono focus:border-[#2563eb] focus:outline-none" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Logo Options (hidden until logo uploaded) -->
+          <div id="logo-options" class="hidden space-y-4">
+            <div>
+              <label class="block font-mono text-[11px] text-[#9a9a9a] mb-2">
+                Logo Size: <span id="logo-size-label">20</span>%
+              </label>
+              <input type="range" id="logo-size" min="15" max="30" value="20"
+                class="w-full h-1.5 bg-black/[0.06] rounded-lg appearance-none cursor-pointer accent-[#2563eb]" />
+            </div>
+            <div class="flex items-center justify-between">
+              <label class="font-mono text-[11px] text-[#9a9a9a]">Logo padding</label>
+              <button id="logo-padding-toggle" class="relative w-11 h-6 rounded-full bg-[#2563eb] transition-colors">
+                <span id="logo-padding-dot" class="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform translate-x-5"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preview -->
+      <div class="lg:col-span-7">
+        <div class="card p-7 flex flex-col items-center">
+          <!-- Error -->
+          <div id="qr-error" class="hidden w-full mb-4 p-3 rounded-lg text-sm text-red-600" style="background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.15);"></div>
+
+          <!-- QR Preview -->
+          <div class="p-6 bg-white rounded-xl border border-black/[0.06] shadow-sm mb-6">
+            <canvas id="qr-canvas" width="300" height="300" class="rounded block"></canvas>
+          </div>
+
+          <!-- Download -->
+          <button id="download-qr" class="btn-primary w-full">
+            <i class="fa-solid fa-download text-xs mr-1"></i> Download QR Code
+          </button>
+
+          <p class="text-[#9a9a9a] text-[10px] mt-4 text-center font-mono">
+            High error correction (H) &middot; PNG format
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function() {
+  // --- QR Code Library ---
+  const PAD0 = 0xEC, PAD1 = 0x11, MODE_8BIT = 4;
+  const ECL = { L:1, M:0, Q:3, H:2 };
+  const RS_TABLE = [
+    [1,26,19],[1,26,16],[1,26,13],[1,26,9],
+    [1,44,34],[1,44,28],[1,44,22],[1,44,16],
+    [1,70,55],[1,70,44],[2,35,17],[2,35,13],
+    [1,100,80],[2,50,32],[2,50,24],[4,25,9],
+    [1,134,108],[2,67,43],[2,33,15,2,34,16],[2,33,11,2,34,12],
+    [2,86,68],[4,43,27],[4,43,19],[4,43,15],
+    [2,98,78],[4,49,31],[2,32,14,4,33,15],[4,39,13,1,40,14],
+    [2,121,97],[2,60,38,2,61,39],[4,40,18,2,41,19],[4,40,14,2,41,15],
+    [2,146,116],[3,58,36,2,59,37],[4,36,16,4,37,17],[4,36,12,4,37,13],
+    [2,86,68,2,87,69],[4,69,43,1,70,44],[6,43,19,2,44,20],[6,43,15,2,44,16],
+  ];
+  const QRMath = { EXP_TABLE: new Array(256), LOG_TABLE: new Array(256),
+    glog(n){ if(n<1)throw new Error('glog('+n+')'); return this.LOG_TABLE[n]; },
+    gexp(n){ while(n<0)n+=255; while(n>=256)n-=255; return this.EXP_TABLE[n]; }
+  };
+  for(let i=0;i<8;i++)QRMath.EXP_TABLE[i]=1<<i;
+  for(let i=8;i<256;i++)QRMath.EXP_TABLE[i]=QRMath.EXP_TABLE[i-4]^QRMath.EXP_TABLE[i-5]^QRMath.EXP_TABLE[i-6]^QRMath.EXP_TABLE[i-8];
+  for(let i=0;i<255;i++)QRMath.LOG_TABLE[QRMath.EXP_TABLE[i]]=i;
+
+  class QRPoly{constructor(n,s){let o=0;while(o<n.length&&n[o]===0)o++;this.num=new Array(n.length-o+s);for(let i=0;i<n.length-o;i++)this.num[i]=n[i+o]}get(i){return this.num[i]}len(){return this.num.length}mul(e){const n=new Array(this.len()+e.len()-1);for(let i=0;i<this.len();i++)for(let j=0;j<e.len();j++)n[i+j]^=QRMath.gexp(QRMath.glog(this.get(i))+QRMath.glog(e.get(j)));return new QRPoly(n,0)}mod(e){if(this.len()-e.len()<0)return this;const r=QRMath.glog(this.get(0))-QRMath.glog(e.get(0));const n=new Array(this.len());for(let i=0;i<this.len();i++)n[i]=this.get(i);for(let i=0;i<e.len();i++)n[i]^=QRMath.gexp(QRMath.glog(e.get(i))+r);return new QRPoly(n,0).mod(e)}}
+
+  class QRBitBuf{constructor(){this.buffer=[];this.length=0}get(i){return((this.buffer[Math.floor(i/8)]>>>(7-i%8))&1)===1}put(n,l){for(let i=0;i<l;i++)this.putBit(((n>>>(l-i-1))&1)===1)}bits(){return this.length}putBit(b){const bi=Math.floor(this.length/8);if(this.buffer.length<=bi)this.buffer.push(0);if(b)this.buffer[bi]|=(0x80>>>(this.length%8));this.length++}}
+
+  const PATTERN_POS=[[],[6,18],[6,22],[6,26],[6,30],[6,34],[6,22,38],[6,24,42],[6,26,46],[6,28,50],[6,30,54],[6,32,58],[6,34,62],[6,26,46,66],[6,26,48,70],[6,26,50,74],[6,30,54,78],[6,30,56,82],[6,30,58,86],[6,34,62,90],[6,28,50,72,94],[6,26,50,74,98],[6,30,54,78,102],[6,28,54,80,106],[6,32,58,84,110],[6,30,58,86,114],[6,34,62,90,118],[6,26,50,74,98,122],[6,30,54,78,102,126],[6,26,52,78,104,130],[6,30,56,82,108,134],[6,34,60,86,112,138],[6,30,58,86,114,142],[6,34,62,90,118,146],[6,30,54,78,102,126,150],[6,24,50,76,102,128,154],[6,28,54,80,106,132,158],[6,32,58,84,110,136,162],[6,26,54,82,110,138,166],[6,30,58,86,114,142,170]];
+
+  function getRSBlocks(t,e){const rs=RS_TABLE[(t-1)*4+(e===ECL.L?0:e===ECL.M?1:e===ECL.Q?2:3)];const l=[];for(let i=0;i<rs.length;i+=3)for(let j=0;j<rs[i];j++)l.push({total:rs[i+1],data:rs[i+2]});return l}
+  function bchTypeInfo(d){let v=d<<10;while(bchDigit(v)-bchDigit(0x537)>=0)v^=(0x537<<(bchDigit(v)-bchDigit(0x537)));return((d<<10)|v)^0x5412}
+  function bchTypeNum(d){let v=d<<12;while(bchDigit(v)-bchDigit(0x1f25)>=0)v^=(0x1f25<<(bchDigit(v)-bchDigit(0x1f25)));return(d<<12)|v}
+  function bchDigit(d){let c=0;while(d!==0){c++;d>>>=1}return c}
+  function getECPoly(l){let a=new QRPoly([1],0);for(let i=0;i<l;i++)a=a.mul(new QRPoly([1,QRMath.gexp(i)],0));return a}
+  function getMask(p,i,j){switch(p){case 0:return(i+j)%2===0;case 1:return i%2===0;case 2:return j%3===0;case 3:return(i+j)%3===0;case 4:return(Math.floor(i/2)+Math.floor(j/3))%2===0;case 5:return(i*j)%2+(i*j)%3===0;case 6:return((i*j)%2+(i*j)%3)%2===0;case 7:return((i*j)%3+(i+j)%2)%2===0}}
+
+  function makeQR(text){
+    const ecl=ECL.H;let tn=1;
+    for(;tn<40;tn++){const rs=getRSBlocks(tn,ecl);const buf=new QRBitBuf();let tdc=0;for(let i=0;i<rs.length;i++)tdc+=rs[i].data;buf.put(MODE_8BIT,4);buf.put(text.length,tn>9?16:8);for(let i=0;i<text.length;i++)buf.put(text.charCodeAt(i),8);if(buf.bits()<=tdc*8)break}
+    const mc=tn*4+17;
+    function createModules(){const m=[];for(let r=0;r<mc;r++){m[r]=[];for(let c=0;c<mc;c++)m[r][c]=null}return m}
+    function setupProbe(m,row,col){for(let r=-1;r<=7;r++){if(row+r<0||mc<=row+r)continue;for(let c=-1;c<=7;c++){if(col+c<0||mc<=col+c)continue;m[row+r][col+c]=(0<=r&&r<=6&&(c===0||c===6))||(0<=c&&c<=6&&(r===0||r===6))||(2<=r&&r<=4&&2<=c&&c<=4)}}}
+    function setupAlign(m){const pos=PATTERN_POS[tn-1];for(let i=0;i<pos.length;i++)for(let j=0;j<pos.length;j++){if(m[pos[i]][pos[j]]!==null)continue;for(let r=-2;r<=2;r++)for(let c=-2;c<=2;c++)m[pos[i]+r][pos[j]+c]=(r===-2||r===2||c===-2||c===2||(r===0&&c===0))}}
+    function setupTiming(m){for(let r=8;r<mc-8;r++){if(m[r][6]===null)m[r][6]=(r%2===0);if(m[6][r]===null)m[6][r]=(r%2===0)}}
+    function setupTypeInfo(m,test,mp){const bits=bchTypeInfo((ecl<<3)|mp);for(let i=0;i<15;i++){const mod=(!test&&((bits>>i)&1)===1);if(i<6)m[i][8]=mod;else if(i<8)m[i+1][8]=mod;else m[mc-15+i][8]=mod}for(let i=0;i<15;i++){const mod=(!test&&((bits>>i)&1)===1);if(i<8)m[8][mc-i-1]=mod;else if(i<9)m[8][15-i-1+1]=mod;else m[8][15-i-1]=mod}m[mc-8][8]=(!test)}
+    function setupTypeNum(m,test){if(tn<7)return;const bits=bchTypeNum(tn);for(let i=0;i<18;i++){const mod=(!test&&((bits>>i)&1)===1);m[Math.floor(i/3)][i%3+mc-11]=mod;m[i%3+mc-11][Math.floor(i/3)]=mod}}
+    function createData(){const rs=getRSBlocks(tn,ecl);const buf=new QRBitBuf();for(let i=0;i<1;i++){buf.put(MODE_8BIT,4);buf.put(text.length,tn>9?16:8);for(let j=0;j<text.length;j++)buf.put(text.charCodeAt(j),8)}let tdc=0;for(let i=0;i<rs.length;i++)tdc+=rs[i].data;if(buf.bits()+4<=tdc*8)buf.put(0,4);while(buf.bits()%8!==0)buf.putBit(false);while(true){if(buf.bits()>=tdc*8)break;buf.put(PAD0,8);if(buf.bits()>=tdc*8)break;buf.put(PAD1,8)}
+      let off=0,maxDc=0,maxEc=0;const dc=[],ec=[];for(let r=0;r<rs.length;r++){const dcC=rs[r].data,ecC=rs[r].total-dcC;maxDc=Math.max(maxDc,dcC);maxEc=Math.max(maxEc,ecC);dc[r]=[];for(let i=0;i<dcC;i++)dc[r][i]=0xff&buf.buffer[i+off];off+=dcC;const rsPoly=getECPoly(ecC);const rawPoly=new QRPoly(dc[r],rsPoly.len()-1);const modPoly=rawPoly.mod(rsPoly);ec[r]=[];for(let i=0;i<rsPoly.len()-1;i++){const mi=i+modPoly.len()-ec[r].length;ec[r][i]=(mi>=0)?modPoly.get(mi):0}}
+      let total=0;for(let i=0;i<rs.length;i++)total+=rs[i].total;const data=new Array(total);let idx=0;for(let i=0;i<maxDc;i++)for(let r=0;r<rs.length;r++)if(i<dc[r].length)data[idx++]=dc[r][i];for(let i=0;i<maxEc;i++)for(let r=0;r<rs.length;r++)if(i<ec[r].length)data[idx++]=ec[r][i];return data}
+    function mapData(m,data,mp){let inc=-1,row=mc-1,bi=7,by=0;for(let col=mc-1;col>0;col-=2){if(col===6)col--;while(true){for(let c=0;c<2;c++){if(m[row][col-c]===null){let dark=false;if(by<data.length)dark=(((data[by]>>>bi)&1)===1);if(getMask(mp,row,col-c))dark=!dark;m[row][col-c]=dark;bi--;if(bi===-1){by++;bi=7}}}row+=inc;if(row<0||mc<=row){row-=inc;inc=-inc;break}}}}
+    function getLostPoint(m){let lp=0;for(let r=0;r<mc;r++)for(let c=0;c<mc;c++){let sc=0;const d=m[r][c];for(let dr=-1;dr<=1;dr++){if(r+dr<0||mc<=r+dr)continue;for(let dc=-1;dc<=1;dc++){if(c+dc<0||mc<=c+dc)continue;if(dr===0&&dc===0)continue;if(d===m[r+dr][c+dc])sc++}}if(sc>5)lp+=(3+sc-5)}for(let r=0;r<mc-1;r++)for(let c=0;c<mc-1;c++){let cnt=0;if(m[r][c])cnt++;if(m[r+1][c])cnt++;if(m[r][c+1])cnt++;if(m[r+1][c+1])cnt++;if(cnt===0||cnt===4)lp+=3}for(let r=0;r<mc;r++)for(let c=0;c<mc-6;c++)if(m[r][c]&&!m[r][c+1]&&m[r][c+2]&&m[r][c+3]&&m[r][c+4]&&!m[r][c+5]&&m[r][c+6])lp+=40;for(let c=0;c<mc;c++)for(let r=0;r<mc-6;r++)if(m[r][c]&&!m[r+1][c]&&m[r+2][c]&&m[r+3][c]&&m[r+4][c]&&!m[r+5][c]&&m[r+6][c])lp+=40;let dk=0;for(let c=0;c<mc;c++)for(let r=0;r<mc;r++)if(m[r][c])dk++;lp+=Math.abs(100*dk/mc/mc-50)/5*10;return lp}
+    function makeImpl(test,mp){const m=createModules();setupProbe(m,0,0);setupProbe(m,mc-7,0);setupProbe(m,0,mc-7);setupAlign(m);setupTiming(m);setupTypeInfo(m,test,mp);setupTypeNum(m,test);const data=createData();mapData(m,data,mp);return m}
+    let minLP=0,bestMP=0;for(let i=0;i<8;i++){const m=makeImpl(true,i);const lp=getLostPoint(m);if(i===0||minLP>lp){minLP=lp;bestMP=i}}
+    const modules=makeImpl(false,bestMP);
+    return{modules,moduleCount:mc}
+  }
+
+  // --- App Logic ---
+  const canvas = document.getElementById('qr-canvas');
+  const ctx = canvas.getContext('2d');
+  let logoImage = null, logoPadding = true;
+
+  function draw() {
+    const url = document.getElementById('qr-url').value;
+    const fg = document.getElementById('fg-color').value;
+    const bg = document.getElementById('bg-color').value;
+    const logoSz = parseInt(document.getElementById('logo-size').value);
+    const errEl = document.getElementById('qr-error');
+    errEl.classList.add('hidden');
+    if (!url) return;
+    try {
+      const qr = makeQR(url);
+      const sz = 300;
+      canvas.width = sz; canvas.height = sz;
+      ctx.fillStyle = bg; ctx.fillRect(0, 0, sz, sz);
+      const msz = sz / qr.moduleCount;
+      const logoArea = (sz * logoSz) / 100;
+      const ls = (sz - logoArea) / 2, le = ls + logoArea;
+      ctx.fillStyle = fg;
+      for (let r = 0; r < qr.moduleCount; r++) {
+        for (let c = 0; c < qr.moduleCount; c++) {
+          if (qr.modules[r][c]) {
+            const px = c * msz, py = r * msz;
+            if (logoImage) {
+              const cx = px + msz/2, cy = py + msz/2;
+              if (cx > ls && cx < le && cy > ls && cy < le) continue;
+            }
+            ctx.fillRect(px, py, msz, msz);
+          }
+        }
+      }
+      if (logoImage) {
+        const img = new Image();
+        img.onload = () => {
+          if (logoPadding) { ctx.fillStyle = bg; ctx.fillRect(ls-6, ls-6, logoArea+12, logoArea+12); }
+          ctx.drawImage(img, ls, ls, logoArea, logoArea);
+        };
+        img.src = logoImage;
+      }
+    } catch(e) {
+      errEl.textContent = 'Error: ' + e.message;
+      errEl.classList.remove('hidden');
+    }
+  }
+
+  ['qr-url','fg-color','bg-color','logo-size'].forEach(id => {
+    document.getElementById(id).addEventListener('input', () => {
+      if (id === 'fg-color') document.getElementById('fg-hex').value = document.getElementById('fg-color').value;
+      if (id === 'bg-color') document.getElementById('bg-hex').value = document.getElementById('bg-color').value;
+      if (id === 'logo-size') document.getElementById('logo-size-label').textContent = document.getElementById('logo-size').value;
+      draw();
+    });
+  });
+  document.getElementById('fg-hex').addEventListener('input', function() {
+    if (/^#[0-9a-f]{6}$/i.test(this.value)) { document.getElementById('fg-color').value = this.value; draw(); }
+  });
+  document.getElementById('bg-hex').addEventListener('input', function() {
+    if (/^#[0-9a-f]{6}$/i.test(this.value)) { document.getElementById('bg-color').value = this.value; draw(); }
+  });
+
+  document.getElementById('logo-input').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        logoImage = ev.target.result;
+        document.getElementById('logo-preview').src = logoImage;
+        document.getElementById('logo-preview-wrap').classList.remove('hidden');
+        document.getElementById('logo-options').classList.remove('hidden');
+        document.getElementById('logo-label').textContent = 'Change logo';
+        draw();
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+  document.getElementById('clear-logo').addEventListener('click', () => {
+    logoImage = null;
+    document.getElementById('logo-input').value = '';
+    document.getElementById('logo-preview-wrap').classList.add('hidden');
+    document.getElementById('logo-options').classList.add('hidden');
+    document.getElementById('logo-label').textContent = 'Upload logo';
+    draw();
+  });
+
+  document.getElementById('logo-padding-toggle').addEventListener('click', () => {
+    logoPadding = !logoPadding;
+    const toggle = document.getElementById('logo-padding-toggle');
+    const dot = document.getElementById('logo-padding-dot');
+    toggle.className = 'relative w-11 h-6 rounded-full transition-colors ' + (logoPadding ? 'bg-[#2563eb]' : 'bg-black/[0.12]');
+    dot.className = 'absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ' + (logoPadding ? 'translate-x-5' : '');
+    draw();
+  });
+
+  document.getElementById('download-qr').addEventListener('click', () => {
+    const link = document.createElement('a');
+    link.download = 'branded-qr-code.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  });
+
+  setTimeout(draw, 100);
+})();
+</script>

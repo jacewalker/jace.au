@@ -12,6 +12,34 @@
                 <a href="/" class="nav-link relative px-3 py-1.5 text-[13px] font-medium text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors" data-path="/">Home</a>
                 <a href="/about" class="nav-link relative px-3 py-1.5 text-[13px] font-medium text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors" data-path="/about">About</a>
                 <a href="/projects" class="nav-link relative px-3 py-1.5 text-[13px] font-medium text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors" data-path="/projects">Projects</a>
+
+                <!-- Tools Dropdown -->
+                <div class="relative" id="tools-dropdown">
+                    <button class="nav-link relative px-3 py-1.5 text-[13px] font-medium text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors flex items-center gap-1" id="tools-trigger">
+                        Tools <i class="fa-solid fa-chevron-down text-[8px] transition-transform" id="tools-chevron"></i>
+                    </button>
+                    <div class="absolute top-full left-0 mt-1 w-56 bg-white/95 backdrop-blur-lg border border-black/[0.08] rounded-xl shadow-lg shadow-black/[0.04] py-2 hidden opacity-0 transition-all duration-200" id="tools-menu">
+                        <a href="/tools/qr-generator" class="tools-link flex items-center gap-3 px-4 py-2.5 text-sm text-[#5c5c5c] hover:text-[#1a1a1a] hover:bg-black/[0.02] transition-colors">
+                            <div class="w-7 h-7 rounded-md bg-[#2563eb]/[0.08] flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-qrcode text-[#2563eb] text-[10px]"></i>
+                            </div>
+                            <div>
+                                <div class="font-medium text-[13px]">QR Generator</div>
+                                <div class="font-mono text-[10px] text-[#9a9a9a]">Branded QR codes</div>
+                            </div>
+                        </a>
+                        <a href="/tools/salary-sacrifice" class="tools-link flex items-center gap-3 px-4 py-2.5 text-sm text-[#5c5c5c] hover:text-[#1a1a1a] hover:bg-black/[0.02] transition-colors">
+                            <div class="w-7 h-7 rounded-md bg-[#2563eb]/[0.08] flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-calculator text-[#2563eb] text-[10px]"></i>
+                            </div>
+                            <div>
+                                <div class="font-medium text-[13px]">Salary Sacrifice</div>
+                                <div class="font-mono text-[10px] text-[#9a9a9a]">AU tax calculator</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
                 <a href="/contact" class="nav-link relative px-3 py-1.5 text-[13px] font-medium text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors" data-path="/contact">Contact</a>
             </div>
 
@@ -41,6 +69,16 @@
             <a href="/" class="mobile-nav block py-2 text-sm text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors">Home</a>
             <a href="/about" class="mobile-nav block py-2 text-sm text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors">About</a>
             <a href="/projects" class="mobile-nav block py-2 text-sm text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors">Projects</a>
+            <!-- Mobile Tools -->
+            <div class="py-2">
+                <div class="font-mono text-[10px] text-[#9a9a9a] uppercase tracking-wider mb-2">Tools</div>
+                <a href="/tools/qr-generator" class="mobile-nav flex items-center gap-2.5 py-2 text-sm text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors pl-2">
+                    <i class="fa-solid fa-qrcode text-[#2563eb] text-[10px]"></i> QR Generator
+                </a>
+                <a href="/tools/salary-sacrifice" class="mobile-nav flex items-center gap-2.5 py-2 text-sm text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors pl-2">
+                    <i class="fa-solid fa-calculator text-[#2563eb] text-[10px]"></i> Salary Sacrifice
+                </a>
+            </div>
             <a href="/contact" class="mobile-nav block py-2 text-sm text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors">Contact</a>
             <div class="flex gap-4 pt-3 border-t border-black/[0.06]">
                 <a href="https://github.com/jacewalker" target="_blank" class="text-[#9a9a9a] hover:text-[#1a1a1a] transition-colors text-sm"><i class="fa-brands fa-github"></i></a>
@@ -59,6 +97,59 @@
             link.classList.remove('text-[#9a9a9a]');
         }
     });
+
+    // Tools dropdown - highlight trigger if on a tools page
+    if (window.location.pathname.startsWith('/tools/')) {
+        const trigger = document.getElementById('tools-trigger');
+        trigger.classList.add('nav-active');
+        trigger.classList.remove('text-[#9a9a9a]');
+        // Also highlight the specific tool link
+        document.querySelectorAll('.tools-link').forEach(link => {
+            if (link.getAttribute('href') === window.location.pathname) {
+                link.classList.add('text-[#1a1a1a]');
+                link.classList.add('bg-black/[0.02]');
+            }
+        });
+    }
+
+    // Tools dropdown toggle
+    const toolsTrigger = document.getElementById('tools-trigger');
+    const toolsMenu = document.getElementById('tools-menu');
+    const toolsChevron = document.getElementById('tools-chevron');
+    const toolsDropdown = document.getElementById('tools-dropdown');
+    let toolsOpen = false;
+
+    function openTools() {
+        toolsOpen = true;
+        toolsMenu.classList.remove('hidden');
+        requestAnimationFrame(() => {
+            toolsMenu.classList.remove('opacity-0');
+            toolsMenu.style.transform = 'translateY(0)';
+        });
+        toolsChevron.style.transform = 'rotate(180deg)';
+    }
+
+    function closeTools() {
+        toolsOpen = false;
+        toolsMenu.classList.add('opacity-0');
+        toolsMenu.style.transform = 'translateY(-4px)';
+        toolsChevron.style.transform = '';
+        setTimeout(() => { if (!toolsOpen) toolsMenu.classList.add('hidden'); }, 200);
+    }
+
+    toolsTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toolsOpen ? closeTools() : openTools();
+    });
+
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+        if (!toolsDropdown.contains(e.target)) closeTools();
+    });
+
+    // Hover open/close for desktop
+    toolsDropdown.addEventListener('mouseenter', openTools);
+    toolsDropdown.addEventListener('mouseleave', closeTools);
 
     // Mobile toggle
     const mobileToggle = document.getElementById('mobile-toggle');

@@ -24,6 +24,8 @@ func main() {
 	r.GET("/posts/:postID", routes.ArticlePostRoute)
 	r.GET("/contact", routes.ContactRoute)
 	r.POST("/contact", routes.ContactSubmissionRoute)
+	r.GET("/tools/qr-generator", routes.QRGeneratorRoute)
+	r.GET("/tools/salary-sacrifice", routes.SalarySacrificeRoute)
 	r.NoRoute(routes.NotFound)
 	r.Run(":8080")
 }
