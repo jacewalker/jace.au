@@ -1,5 +1,5 @@
 <section class="pt-28 pb-20 min-h-screen">
-  <div class="max-w-3xl mx-auto px-6">
+  <div class="max-w-5xl mx-auto px-6">
 
     <div class="mb-10 animate-fade-up">
       <span class="tag">Tools</span>
@@ -11,15 +11,15 @@
       </p>
     </div>
 
-    <div class="grid lg:grid-cols-12 gap-10 reveal">
+    <div class="grid lg:grid-cols-2 gap-10 reveal">
       <!-- Controls -->
-      <div class="lg:col-span-5">
-        <div class="card p-7 space-y-6">
+      <div>
+        <div class="card p-8 space-y-7">
           <!-- URL Input -->
           <div>
-            <label for="qr-url" class="block font-mono text-[11px] text-[#9a9a9a] mb-2">URL *</label>
+            <label for="qr-url" class="block font-mono text-[11px] text-[#9a9a9a] mb-2.5">URL *</label>
             <input
-              class="w-full bg-[#faf9f7] border border-black/[0.08] rounded-lg px-4 py-3 text-sm text-[#1a1a1a] placeholder-[#c5c5c5] transition-colors focus:border-[#2563eb] focus:outline-none"
+              class="w-full bg-[#faf9f7] border border-black/[0.08] rounded-lg px-4 py-3.5 text-sm text-[#1a1a1a] placeholder-[#c5c5c5] transition-colors focus:border-[#2563eb] focus:outline-none"
               placeholder="https://example.com"
               type="url" id="qr-url" value="https://example.com"
             />
@@ -27,12 +27,12 @@
 
           <!-- Logo Upload -->
           <div>
-            <label class="block font-mono text-[11px] text-[#9a9a9a] mb-2">Logo (optional)</label>
+            <label class="block font-mono text-[11px] text-[#9a9a9a] mb-2.5">Logo (optional)</label>
             <div class="flex gap-3 items-center">
               <label class="flex-1 cursor-pointer">
-                <div class="flex items-center justify-center px-4 py-3 bg-[#faf9f7] border border-dashed border-black/[0.12] rounded-lg hover:border-[#2563eb] transition-colors">
-                  <i class="fa-solid fa-cloud-arrow-up text-[#9a9a9a] text-xs mr-2"></i>
-                  <span class="text-[#9a9a9a] text-sm" id="logo-label">Upload logo</span>
+                <div class="flex items-center justify-center px-4 py-3.5 bg-[#faf9f7] border border-dashed border-black/[0.12] rounded-lg hover:border-[#2563eb] hover:bg-[#faf9f7]/80 transition-all">
+                  <i class="fa-solid fa-cloud-arrow-up text-[#9a9a9a] text-sm mr-2.5"></i>
+                  <span class="text-[#5c5c5c] text-sm" id="logo-label">Upload logo</span>
                 </div>
                 <input type="file" accept="image/*" id="logo-input" class="hidden" />
               </label>
@@ -46,29 +46,38 @@
           </div>
 
           <!-- Colours -->
-          <div class="grid grid-cols-2 gap-4">
-            <div>
-              <label class="block font-mono text-[11px] text-[#9a9a9a] mb-2">Foreground</label>
-              <div class="flex items-center gap-2">
-                <input type="color" id="fg-color" value="#000000" class="w-9 h-9 rounded-lg cursor-pointer border border-black/[0.08] p-0.5" />
-                <input type="text" id="fg-hex" value="#000000"
-                  class="flex-1 bg-[#faf9f7] border border-black/[0.08] rounded-lg px-3 py-2 text-xs text-[#1a1a1a] focus:border-[#2563eb] focus:outline-none" />
+          <div>
+            <label class="block font-mono text-[11px] text-[#9a9a9a] mb-2.5">Colours</label>
+            <div class="grid grid-cols-2 gap-5">
+              <div>
+                <span class="block text-xs text-[#5c5c5c] mb-2">Foreground</span>
+                <div class="flex items-center gap-3">
+                  <label class="relative cursor-pointer group">
+                    <div id="fg-swatch" class="w-11 h-11 rounded-xl border-2 border-black/[0.08] group-hover:border-[#2563eb] transition-colors shadow-sm" style="background: #000000;"></div>
+                    <input type="color" id="fg-color" value="#000000" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+                  </label>
+                  <input type="text" id="fg-hex" value="#000000"
+                    class="flex-1 bg-[#faf9f7] border border-black/[0.08] rounded-lg px-3 py-2.5 text-sm text-[#1a1a1a] focus:border-[#2563eb] focus:outline-none transition-colors" />
+                </div>
               </div>
-            </div>
-            <div>
-              <label class="block font-mono text-[11px] text-[#9a9a9a] mb-2">Background</label>
-              <div class="flex items-center gap-2">
-                <input type="color" id="bg-color" value="#ffffff" class="w-9 h-9 rounded-lg cursor-pointer border border-black/[0.08] p-0.5" />
-                <input type="text" id="bg-hex" value="#ffffff"
-                  class="flex-1 bg-[#faf9f7] border border-black/[0.08] rounded-lg px-3 py-2 text-xs text-[#1a1a1a] focus:border-[#2563eb] focus:outline-none" />
+              <div>
+                <span class="block text-xs text-[#5c5c5c] mb-2">Background</span>
+                <div class="flex items-center gap-3">
+                  <label class="relative cursor-pointer group">
+                    <div id="bg-swatch" class="w-11 h-11 rounded-xl border-2 border-black/[0.08] group-hover:border-[#2563eb] transition-colors shadow-sm" style="background: #ffffff;"></div>
+                    <input type="color" id="bg-color" value="#ffffff" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+                  </label>
+                  <input type="text" id="bg-hex" value="#ffffff"
+                    class="flex-1 bg-[#faf9f7] border border-black/[0.08] rounded-lg px-3 py-2.5 text-sm text-[#1a1a1a] focus:border-[#2563eb] focus:outline-none transition-colors" />
+                </div>
               </div>
             </div>
           </div>
 
           <!-- Logo Options (hidden until logo uploaded) -->
-          <div id="logo-options" class="hidden space-y-4">
+          <div id="logo-options" class="hidden space-y-5">
             <div>
-              <label class="block font-mono text-[11px] text-[#9a9a9a] mb-2">
+              <label class="block font-mono text-[11px] text-[#9a9a9a] mb-2.5">
                 Logo Size: <span id="logo-size-label">20</span>%
               </label>
               <input type="range" id="logo-size" min="15" max="30" value="20"
@@ -85,24 +94,25 @@
       </div>
 
       <!-- Preview -->
-      <div class="lg:col-span-7">
-        <div class="card p-7 flex flex-col items-center">
+      <div>
+        <div class="card p-8 flex flex-col items-center">
           <!-- Error -->
           <div id="qr-error" class="hidden w-full mb-4 p-3 rounded-lg text-sm text-red-600" style="background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.15);"></div>
 
           <!-- QR Preview -->
-          <div class="p-6 bg-white rounded-xl border border-black/[0.06] shadow-sm mb-6">
+          <div class="p-8 bg-white rounded-xl border border-black/[0.06] shadow-sm">
             <canvas id="qr-canvas" width="300" height="300" class="rounded block"></canvas>
           </div>
 
           <!-- Download -->
-          <button id="download-qr" class="btn-primary w-full">
-            <i class="fa-solid fa-download text-xs mr-1"></i> Download QR Code
-          </button>
-
-          <p class="text-[#9a9a9a] text-[10px] mt-4 text-center font-mono">
-            High error correction (H) &middot; PNG format
-          </p>
+          <div class="mt-6 w-full flex flex-col items-center gap-3">
+            <button id="download-qr" class="inline-flex items-center gap-2 px-6 py-2.5 bg-[#1a1a1a] text-white text-sm font-medium rounded-lg hover:bg-[#333] transition-all hover:shadow-md">
+              <i class="fa-solid fa-download text-xs"></i> Download PNG
+            </button>
+            <p class="text-[#9a9a9a] text-[10px] text-center font-mono">
+              High error correction (H) &middot; PNG format
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -112,7 +122,7 @@
 
 <script>
 (function() {
-  // --- QR Code Library ---
+  // --- QR Code Library (port of qrcode-generator by Kazuhiko Arase) ---
   const PAD0 = 0xEC, PAD1 = 0x11, MODE_8BIT = 4;
   const ECL = { L:1, M:0, Q:3, H:2 };
   const RS_TABLE = [
@@ -217,19 +227,26 @@
     }
   }
 
+  // Sync color swatches with inputs
+  function updateSwatches() {
+    document.getElementById('fg-swatch').style.background = document.getElementById('fg-color').value;
+    document.getElementById('bg-swatch').style.background = document.getElementById('bg-color').value;
+  }
+
   ['qr-url','fg-color','bg-color','logo-size'].forEach(id => {
     document.getElementById(id).addEventListener('input', () => {
       if (id === 'fg-color') document.getElementById('fg-hex').value = document.getElementById('fg-color').value;
       if (id === 'bg-color') document.getElementById('bg-hex').value = document.getElementById('bg-color').value;
       if (id === 'logo-size') document.getElementById('logo-size-label').textContent = document.getElementById('logo-size').value;
+      updateSwatches();
       draw();
     });
   });
   document.getElementById('fg-hex').addEventListener('input', function() {
-    if (/^#[0-9a-f]{6}$/i.test(this.value)) { document.getElementById('fg-color').value = this.value; draw(); }
+    if (/^#[0-9a-f]{6}$/i.test(this.value)) { document.getElementById('fg-color').value = this.value; updateSwatches(); draw(); }
   });
   document.getElementById('bg-hex').addEventListener('input', function() {
-    if (/^#[0-9a-f]{6}$/i.test(this.value)) { document.getElementById('bg-color').value = this.value; draw(); }
+    if (/^#[0-9a-f]{6}$/i.test(this.value)) { document.getElementById('bg-color').value = this.value; updateSwatches(); draw(); }
   });
 
   document.getElementById('logo-input').addEventListener('change', function(e) {

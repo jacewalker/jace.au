@@ -1,5 +1,5 @@
 <section class="pt-28 pb-20 min-h-screen">
-  <div class="max-w-3xl mx-auto px-6">
+  <div class="max-w-6xl mx-auto px-6">
 
     <div class="mb-12 animate-fade-up">
       <span class="tag">Tools</span>
@@ -11,118 +11,171 @@
       </p>
     </div>
 
-    <!-- Inputs Card -->
-    <div class="card p-8 mb-8 reveal">
-      <div class="grid sm:grid-cols-3 gap-6">
-        <div>
-          <label for="ss-salary" class="block font-mono text-[11px] text-[#9a9a9a] mb-2">Annual Salary ($)</label>
-          <input type="number" id="ss-salary" value="80000"
-            class="w-full bg-[#faf9f7] border border-black/[0.08] rounded-lg px-4 py-3 text-sm text-[#1a1a1a] placeholder-[#c5c5c5] focus:border-[#2563eb] focus:outline-none transition-colors" />
-        </div>
-        <div>
-          <label for="ss-price" class="block font-mono text-[11px] text-[#9a9a9a] mb-2">Purchase Price ($)</label>
-          <input type="number" id="ss-price" value="2000"
-            class="w-full bg-[#faf9f7] border border-black/[0.08] rounded-lg px-4 py-3 text-sm text-[#1a1a1a] placeholder-[#c5c5c5] focus:border-[#2563eb] focus:outline-none transition-colors" />
-        </div>
-        <div>
-          <label for="ss-weeks" class="block font-mono text-[11px] text-[#9a9a9a] mb-2">Number of Weeks</label>
-          <input type="number" id="ss-weeks" value="52"
-            class="w-full bg-[#faf9f7] border border-black/[0.08] rounded-lg px-4 py-3 text-sm text-[#1a1a1a] placeholder-[#c5c5c5] focus:border-[#2563eb] focus:outline-none transition-colors" />
-        </div>
-      </div>
-    </div>
+    <div class="grid lg:grid-cols-3 gap-8">
+      <!-- Left Column: Calculator -->
+      <div class="lg:col-span-2 space-y-8">
 
-    <!-- Results -->
-    <div class="grid md:grid-cols-2 gap-6 mb-8 reveal">
-      <!-- Normal Pay -->
-      <div class="card p-7">
-        <div class="flex items-center gap-3 mb-5">
-          <div class="w-8 h-8 rounded-lg bg-black/[0.04] flex items-center justify-center">
-            <i class="fa-solid fa-receipt text-[#5c5c5c] text-xs"></i>
+        <!-- Inputs Card -->
+        <div class="card p-8 reveal">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-8 h-8 rounded-lg bg-black/[0.04] flex items-center justify-center">
+              <i class="fa-solid fa-sliders text-[#5c5c5c] text-xs"></i>
+            </div>
+            <h3 class="font-display font-bold text-[#1a1a1a]">Your Details</h3>
           </div>
-          <h3 class="font-display font-bold text-[#1a1a1a]">Normal Pay</h3>
-        </div>
-        <div class="space-y-3 text-sm">
-          <div class="flex justify-between items-center">
-            <span class="text-[#5c5c5c]">Weekly Take Home</span>
-            <span class="font-semibold text-[#1a1a1a] text-sm" id="normal-weekly">$0.00</span>
-          </div>
-          <div class="flex justify-between items-center">
-            <span class="text-[#5c5c5c]">Earnings (<span id="normal-weeks-label">52</span> weeks)</span>
-            <span class="font-semibold text-[#1a1a1a] text-sm" id="normal-earnings">$0.00</span>
-          </div>
-          <div class="flex justify-between items-center text-red-500">
-            <span>Less Purchase</span>
-            <span class="font-semibold text-sm" id="normal-less">-$0.00</span>
-          </div>
-          <div class="h-px bg-black/[0.06]"></div>
-          <div class="flex justify-between items-center pt-1">
-            <span class="font-bold text-[#1a1a1a]">Net After Purchase</span>
-            <span class="font-bold text-[#1a1a1a] text-sm" id="normal-net">$0.00</span>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div>
+              <label for="ss-salary" class="block font-mono text-[11px] text-[#9a9a9a] mb-2">Annual Salary ($)</label>
+              <input type="number" id="ss-salary" value="80000"
+                class="w-full bg-[#faf9f7] border border-black/[0.08] rounded-lg px-4 py-3 text-sm text-[#1a1a1a] placeholder-[#c5c5c5] focus:border-[#2563eb] focus:outline-none transition-colors" />
+            </div>
+            <div>
+              <label for="ss-price" class="block font-mono text-[11px] text-[#9a9a9a] mb-2">Purchase Price ($)</label>
+              <input type="number" id="ss-price" value="2000"
+                class="w-full bg-[#faf9f7] border border-black/[0.08] rounded-lg px-4 py-3 text-sm text-[#1a1a1a] placeholder-[#c5c5c5] focus:border-[#2563eb] focus:outline-none transition-colors" />
+            </div>
+            <div>
+              <label for="ss-weeks" class="block font-mono text-[11px] text-[#9a9a9a] mb-2">Number of Weeks</label>
+              <input type="number" id="ss-weeks" value="52"
+                class="w-full bg-[#faf9f7] border border-black/[0.08] rounded-lg px-4 py-3 text-sm text-[#1a1a1a] placeholder-[#c5c5c5] focus:border-[#2563eb] focus:outline-none transition-colors" />
+            </div>
           </div>
         </div>
+
+        <!-- Results -->
+        <div class="grid md:grid-cols-2 gap-8 reveal">
+          <!-- Normal Pay -->
+          <div class="card p-7">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-8 h-8 rounded-lg bg-black/[0.04] flex items-center justify-center">
+                <i class="fa-solid fa-receipt text-[#5c5c5c] text-xs"></i>
+              </div>
+              <h3 class="font-display font-bold text-[#1a1a1a]">Normal Pay</h3>
+            </div>
+            <div class="space-y-3 text-sm">
+              <div class="flex justify-between items-center">
+                <span class="text-[#5c5c5c]">Weekly Take Home</span>
+                <span class="font-semibold text-[#1a1a1a] text-sm" id="normal-weekly">$0.00</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-[#5c5c5c]">Earnings (<span id="normal-weeks-label">52</span> weeks)</span>
+                <span class="font-semibold text-[#1a1a1a] text-sm" id="normal-earnings">$0.00</span>
+              </div>
+              <div class="flex justify-between items-center text-red-500">
+                <span>Less Purchase</span>
+                <span class="font-semibold text-sm" id="normal-less">-$0.00</span>
+              </div>
+              <div class="h-px bg-black/[0.06]"></div>
+              <div class="flex justify-between items-center pt-1">
+                <span class="font-bold text-[#1a1a1a]">Net After Purchase</span>
+                <span class="font-bold text-[#1a1a1a] text-sm" id="normal-net">$0.00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Salary Sacrifice -->
+          <div class="card p-7" style="border-color: rgba(37,99,235,0.12); background: linear-gradient(135deg, rgba(37,99,235,0.02), rgba(37,99,235,0.05));">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-8 h-8 rounded-lg bg-[#2563eb]/[0.08] flex items-center justify-center">
+                <i class="fa-solid fa-hand-holding-dollar text-[#2563eb] text-xs"></i>
+              </div>
+              <h3 class="font-display font-bold text-[#1a1a1a]">Salary Sacrifice</h3>
+            </div>
+            <div class="space-y-3 text-sm">
+              <div class="flex justify-between items-center">
+                <span class="text-[#5c5c5c]">Weekly Take Home</span>
+                <span class="font-semibold text-[#1a1a1a] text-sm" id="sac-weekly">$0.00</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-[#5c5c5c]">Earnings (<span id="sac-weeks-label">52</span> weeks)</span>
+                <span class="font-semibold text-[#1a1a1a] text-sm" id="sac-earnings">$0.00</span>
+              </div>
+              <div class="flex justify-between items-center text-green-600">
+                <span>Item Included</span>
+                <span class="font-semibold text-sm">$0.00</span>
+              </div>
+              <div class="h-px bg-[#2563eb]/[0.08]"></div>
+              <div class="flex justify-between items-center pt-1">
+                <span class="font-bold text-[#1a1a1a]">Net After Purchase</span>
+                <span class="font-bold text-[#1a1a1a] text-sm" id="sac-net">$0.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Benefit Summary -->
+        <div class="reveal" style="background: linear-gradient(135deg, rgba(34,197,94,0.04), rgba(16,185,129,0.08)); border: 2px solid rgba(34,197,94,0.2); border-radius: 16px; padding: 2rem;">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background: rgba(34,197,94,0.1);">
+              <i class="fa-solid fa-arrow-trend-up text-green-600 text-sm"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg text-[#1a1a1a]">Salary Sacrifice Benefit</h3>
+          </div>
+          <div class="space-y-4">
+            <div class="flex justify-between items-center">
+              <span class="text-[#5c5c5c]">Original Price</span>
+              <span class="font-semibold text-[#5c5c5c]" id="benefit-price">$0.00</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-[#5c5c5c]">Realised Purchase Price</span>
+              <span class="font-bold text-[#2563eb] text-lg" id="benefit-realised">$0.00</span>
+            </div>
+            <div class="h-px" style="background: rgba(34,197,94,0.15);"></div>
+            <div class="flex justify-between items-center">
+              <span class="text-[#1a1a1a] font-semibold">Effective Discount</span>
+              <span class="font-bold text-green-600 text-lg" id="benefit-discount">$0.00</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-[#1a1a1a] font-semibold">Discount Percentage</span>
+              <span class="font-bold text-green-600 text-lg" id="benefit-percent">0.0%</span>
+            </div>
+            <div class="h-px" style="background: rgba(34,197,94,0.15);"></div>
+            <div class="flex justify-between items-center">
+              <span class="text-[#9a9a9a] text-sm">Weekly Sacrifice Amount</span>
+              <span class="text-[#9a9a9a] text-sm" id="benefit-weekly">$0.00</span>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <!-- Salary Sacrifice -->
-      <div class="card p-7" style="border-color: rgba(37,99,235,0.12); background: linear-gradient(135deg, rgba(37,99,235,0.02), rgba(37,99,235,0.05));">
-        <div class="flex items-center gap-3 mb-5">
-          <div class="w-8 h-8 rounded-lg bg-[#2563eb]/[0.08] flex items-center justify-center">
-            <i class="fa-solid fa-hand-holding-dollar text-[#2563eb] text-xs"></i>
+      <!-- Right Column: Tax Bracket Table -->
+      <div class="lg:col-span-1 reveal">
+        <div class="card p-7 lg:sticky lg:top-20">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-8 h-8 rounded-lg bg-amber-500/[0.08] flex items-center justify-center">
+              <i class="fa-solid fa-landmark text-amber-600 text-xs"></i>
+            </div>
+            <div>
+              <h3 class="font-display font-bold text-[#1a1a1a] text-sm">Tax Breakdown</h3>
+              <p class="text-[10px] text-[#9a9a9a] font-mono">2024-25 AUS</p>
+            </div>
           </div>
-          <h3 class="font-display font-bold text-[#1a1a1a]">Salary Sacrifice</h3>
-        </div>
-        <div class="space-y-3 text-sm">
-          <div class="flex justify-between items-center">
-            <span class="text-[#5c5c5c]">Weekly Take Home</span>
-            <span class="font-semibold text-[#1a1a1a] text-sm" id="sac-weekly">$0.00</span>
-          </div>
-          <div class="flex justify-between items-center">
-            <span class="text-[#5c5c5c]">Earnings (<span id="sac-weeks-label">52</span> weeks)</span>
-            <span class="font-semibold text-[#1a1a1a] text-sm" id="sac-earnings">$0.00</span>
-          </div>
-          <div class="flex justify-between items-center text-green-600">
-            <span>Item Included</span>
-            <span class="font-semibold text-sm">$0.00</span>
-          </div>
-          <div class="h-px bg-[#2563eb]/[0.08]"></div>
-          <div class="flex justify-between items-center pt-1">
-            <span class="font-bold text-[#1a1a1a]">Net After Purchase</span>
-            <span class="font-bold text-[#1a1a1a] text-sm" id="sac-net">$0.00</span>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Benefit Summary -->
-    <div class="reveal" style="background: linear-gradient(135deg, rgba(34,197,94,0.04), rgba(16,185,129,0.08)); border: 2px solid rgba(34,197,94,0.2); border-radius: 16px; padding: 2rem;">
-      <div class="flex items-center gap-3 mb-6">
-        <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background: rgba(34,197,94,0.1);">
-          <i class="fa-solid fa-arrow-trend-up text-green-600 text-sm"></i>
-        </div>
-        <h3 class="font-display font-bold text-lg text-[#1a1a1a]">Salary Sacrifice Benefit</h3>
-      </div>
-      <div class="space-y-4">
-        <div class="flex justify-between items-center">
-          <span class="text-[#5c5c5c]">Original Price</span>
-          <span class="font-semibold text-[#5c5c5c]" id="benefit-price">$0.00</span>
-        </div>
-        <div class="flex justify-between items-center">
-          <span class="text-[#5c5c5c]">Realised Purchase Price</span>
-          <span class="font-bold text-[#2563eb] text-lg" id="benefit-realised">$0.00</span>
-        </div>
-        <div class="h-px" style="background: rgba(34,197,94,0.15);"></div>
-        <div class="flex justify-between items-center">
-          <span class="text-[#1a1a1a] font-semibold">Effective Discount</span>
-          <span class="font-bold text-green-600 text-lg" id="benefit-discount">$0.00</span>
-        </div>
-        <div class="flex justify-between items-center">
-          <span class="text-[#1a1a1a] font-semibold">Discount Percentage</span>
-          <span class="font-bold text-green-600 text-lg" id="benefit-percent">0.0%</span>
-        </div>
-        <div class="h-px" style="background: rgba(34,197,94,0.15);"></div>
-        <div class="flex justify-between items-center">
-          <span class="text-[#9a9a9a] text-sm">Weekly Sacrifice Amount</span>
-          <span class="text-[#9a9a9a] text-sm" id="benefit-weekly">$0.00</span>
+          <div class="space-y-0" id="tax-brackets">
+            <!-- Bracket rows will be injected by JS -->
+          </div>
+
+          <!-- Totals -->
+          <div class="mt-5 pt-4 border-t border-black/[0.06] space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-[#5c5c5c] text-xs">Income Tax</span>
+              <span class="font-semibold text-[#1a1a1a] text-sm" id="tax-total-income">$0</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-[#5c5c5c] text-xs">Medicare Levy (2%)</span>
+              <span class="font-semibold text-[#1a1a1a] text-sm" id="tax-total-medicare">$0</span>
+            </div>
+            <div class="h-px bg-black/[0.06]"></div>
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-[#1a1a1a] text-sm">Total Tax</span>
+              <span class="font-bold text-[#1a1a1a] text-sm" id="tax-total-all">$0</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-[#2563eb] text-sm">Effective Rate</span>
+              <span class="font-bold text-[#2563eb] text-sm" id="tax-effective-rate">0%</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -130,8 +183,64 @@
   </div>
 </section>
 
+<style>
+  .bracket-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
+  .bracket-row.active {
+    background: rgba(37,99,235,0.04);
+    border-color: rgba(37,99,235,0.12);
+  }
+  .bracket-bar {
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(0,0,0,0.04);
+    margin-top: 6px;
+    overflow: hidden;
+  }
+  .bracket-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+</style>
+
 <script>
 (function() {
+  const brackets = [
+    { min: 0, max: 18200, rate: 0, label: '$0 – $18,200', rateLabel: '0%' },
+    { min: 18201, max: 45000, rate: 0.16, label: '$18,201 – $45,000', rateLabel: '16%' },
+    { min: 45001, max: 135000, rate: 0.30, label: '$45,001 – $135,000', rateLabel: '30%' },
+    { min: 135001, max: 190000, rate: 0.37, label: '$135,001 – $190,000', rateLabel: '37%' },
+    { min: 190001, max: Infinity, rate: 0.45, label: '$190,001+', rateLabel: '45%' },
+  ];
+
+  // Build bracket rows
+  const container = document.getElementById('tax-brackets');
+  const barColors = ['#94a3b8', '#60a5fa', '#2563eb', '#7c3aed', '#dc2626'];
+  brackets.forEach((b, i) => {
+    const row = document.createElement('div');
+    row.className = 'bracket-row';
+    row.id = 'bracket-' + i;
+    row.innerHTML = `
+      <div>
+        <div class="text-[11px] text-[#5c5c5c] leading-tight">${b.label}</div>
+        <div class="bracket-bar"><div class="bracket-bar-fill" id="bar-${i}" style="width: 0%; background: ${barColors[i]};"></div></div>
+      </div>
+      <div class="text-right">
+        <div class="font-mono text-[10px] text-[#9a9a9a]">${b.rateLabel}</div>
+        <div class="text-xs font-semibold text-[#1a1a1a] mt-1" id="bracket-tax-${i}">$0</div>
+      </div>
+    `;
+    container.appendChild(row);
+  });
+
   function calcTax(income) {
     let tax = 0;
     if (income > 190000) tax = 51638 + (income - 190000) * 0.45;
@@ -141,7 +250,61 @@
     return tax + income * 0.02;
   }
 
+  function calcBracketTax(income, bracketMin, bracketMax, rate) {
+    if (income < bracketMin) return 0;
+    const taxableInBracket = Math.min(income, bracketMax) - bracketMin + (bracketMin === 0 ? 0 : 1);
+    const adjustedTaxable = bracketMin === 0 ? Math.min(income, bracketMax) - bracketMin : Math.min(income - bracketMin + 1, bracketMax - bracketMin + 1);
+    // For the first bracket, no tax
+    if (rate === 0) return 0;
+    // Calculate tax in this bracket
+    if (income <= bracketMin) return 0;
+    const upper = bracketMax === Infinity ? income : Math.min(income, bracketMax);
+    const taxable = upper - (bracketMin - 1);
+    return Math.max(0, taxable * rate);
+  }
+
   function fmt(n) { return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function fmtInt(n) { return '$' + Math.round(n).toLocaleString(); }
+
+  function updateTaxTable(salary) {
+    let incomeTax = 0;
+    const bracketTaxes = [];
+    let maxBracketTax = 1;
+
+    brackets.forEach((b, i) => {
+      let tax = 0;
+      if (salary > (b.min === 0 ? 0 : b.min - 1)) {
+        const upper = b.max === Infinity ? salary : Math.min(salary, b.max);
+        const lower = b.min === 0 ? 0 : b.min - 1;
+        const taxable = upper - lower;
+        tax = taxable * b.rate;
+      }
+      bracketTaxes.push(tax);
+      incomeTax += tax;
+      if (tax > maxBracketTax) maxBracketTax = tax;
+    });
+
+    // Update each bracket row
+    brackets.forEach((b, i) => {
+      const row = document.getElementById('bracket-' + i);
+      const bar = document.getElementById('bar-' + i);
+      const taxEl = document.getElementById('bracket-tax-' + i);
+      const isActive = salary >= b.min;
+
+      row.className = 'bracket-row' + (isActive ? ' active' : '');
+      taxEl.textContent = fmtInt(bracketTaxes[i]);
+      bar.style.width = (bracketTaxes[i] / maxBracketTax * 100) + '%';
+    });
+
+    const medicare = salary * 0.02;
+    const totalTax = incomeTax + medicare;
+    const effectiveRate = salary > 0 ? (totalTax / salary * 100) : 0;
+
+    document.getElementById('tax-total-income').textContent = fmtInt(incomeTax);
+    document.getElementById('tax-total-medicare').textContent = fmtInt(medicare);
+    document.getElementById('tax-total-all').textContent = fmtInt(totalTax);
+    document.getElementById('tax-effective-rate').textContent = effectiveRate.toFixed(1) + '%';
+  }
 
   function calculate() {
     const salary = parseFloat(document.getElementById('ss-salary').value) || 0;
@@ -162,7 +325,7 @@
     const sacEarnings = sacWeeklyTH * weeks;
 
     const discount = sacEarnings - normalNet;
-    const discountPct = (discount / price) * 100;
+    const discountPct = price > 0 ? (discount / price) * 100 : 0;
 
     document.getElementById('normal-weekly').textContent = fmt(normalWeekly);
     document.getElementById('normal-weeks-label').textContent = weeks;
@@ -180,6 +343,8 @@
     document.getElementById('benefit-discount').textContent = fmt(discount);
     document.getElementById('benefit-percent').textContent = discountPct.toFixed(1) + '%';
     document.getElementById('benefit-weekly').textContent = fmt(sacWeekly);
+
+    updateTaxTable(salary);
   }
 
   ['ss-salary', 'ss-price', 'ss-weeks'].forEach(id => {
