@@ -23,10 +23,15 @@
             </div>
             <h3 class="font-display font-bold text-[#1a1a1a]">Your Details</h3>
           </div>
-          <div class="grid sm:grid-cols-3 gap-6">
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div>
-              <label for="ss-salary" class="block font-mono text-[11px] text-[#9a9a9a] mb-2">Annual Salary ($)</label>
+              <label for="ss-salary" class="block font-mono text-[11px] text-[#9a9a9a] mb-2">Base Salary excl. Super ($)</label>
               <input type="number" id="ss-salary" value="80000"
+                class="w-full bg-[#faf9f7] border border-black/[0.08] rounded-lg px-4 py-3 text-sm text-[#1a1a1a] placeholder-[#c5c5c5] focus:border-[#2563eb] focus:outline-none transition-colors" />
+            </div>
+            <div>
+              <label for="ss-super-rate" class="block font-mono text-[11px] text-[#9a9a9a] mb-2">Super Rate (%)</label>
+              <input type="number" id="ss-super-rate" value="12" min="0" max="30" step="0.5"
                 class="w-full bg-[#faf9f7] border border-black/[0.08] rounded-lg px-4 py-3 text-sm text-[#1a1a1a] placeholder-[#c5c5c5] focus:border-[#2563eb] focus:outline-none transition-colors" />
             </div>
             <div>
@@ -38,6 +43,24 @@
               <label for="ss-weeks" class="block font-mono text-[11px] text-[#9a9a9a] mb-2">Number of Weeks</label>
               <input type="number" id="ss-weeks" value="52"
                 class="w-full bg-[#faf9f7] border border-black/[0.08] rounded-lg px-4 py-3 text-sm text-[#1a1a1a] placeholder-[#c5c5c5] focus:border-[#2563eb] focus:outline-none transition-colors" />
+            </div>
+          </div>
+
+          <!-- Super Summary -->
+          <div class="mt-6 pt-5 border-t border-black/[0.06]">
+            <div class="grid sm:grid-cols-3 gap-4 text-sm">
+              <div class="flex justify-between sm:block">
+                <span class="text-[#9a9a9a] text-xs">Total Package (incl. Super)</span>
+                <span class="font-semibold text-[#1a1a1a] sm:mt-1 sm:block" id="super-package">$0</span>
+              </div>
+              <div class="flex justify-between sm:block">
+                <span class="text-[#9a9a9a] text-xs">Annual Super Contribution</span>
+                <span class="font-semibold text-[#2563eb] sm:mt-1 sm:block" id="super-annual">$0</span>
+              </div>
+              <div class="flex justify-between sm:block">
+                <span class="text-[#9a9a9a] text-xs">Super Per Pay Period</span>
+                <span class="font-semibold text-[#1a1a1a] sm:mt-1 sm:block" id="super-weekly">$0</span>
+              </div>
             </div>
           </div>
         </div>
@@ -318,8 +341,18 @@
 
   function calculate() {
     const salary = parseFloat(document.getElementById('ss-salary').value) || 0;
+    const superRate = parseFloat(document.getElementById('ss-super-rate').value) || 12;
     const price = parseFloat(document.getElementById('ss-price').value) || 0;
     const weeks = parseFloat(document.getElementById('ss-weeks').value) || 1;
+
+    // Super calculations
+    const superAnnual = salary * (superRate / 100);
+    const totalPackage = salary + superAnnual;
+    const superPerPeriod = superAnnual / 52;
+
+    document.getElementById('super-package').textContent = fmtInt(totalPackage);
+    document.getElementById('super-annual').textContent = fmtInt(superAnnual);
+    document.getElementById('super-weekly').textContent = fmt(superPerPeriod);
 
     const normalTax = calcTax(salary);
     const normalTakeHome = salary - normalTax;
@@ -357,7 +390,7 @@
     updateTaxTable(salary);
   }
 
-  ['ss-salary', 'ss-price', 'ss-weeks'].forEach(id => {
+  ['ss-salary', 'ss-super-rate', 'ss-price', 'ss-weeks'].forEach(id => {
     document.getElementById(id).addEventListener('input', calculate);
   });
 
