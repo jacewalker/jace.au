@@ -14,7 +14,7 @@ type Form struct {
 }
 
 func SendEmail(form *Form) error {
-	to := fmt.Sprintf("Jace <%s>", "jacewalker@me.com")
+	to := fmt.Sprintf("Jace <%s>", "me@jace.au")
 	subject := fmt.Sprintf("Contact Form Submission by %s", form.Name)
 	textbody := fmt.Sprintf("Message: %s", form.Message)
 	htmlbody := fmt.Sprintf(`
@@ -41,7 +41,7 @@ func SendEmail(form *Form) error {
 `, form.Name, form.Email, form.Phone, form.Message)
 
 	email := smtp2go.Email{
-		From: "Website <website@jcwlkr.io>",
+		From: "Website <website@jace.au>",
 		To: []string{
 			to,
 		},
