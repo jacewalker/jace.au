@@ -43,11 +43,19 @@ func ContactSubmissionRoute(c *gin.Context) {
 
 	if form.Name == "" || form.Email == "" || form.Message == "" {
 		c.HTML(http.StatusBadRequest, "tmpl-contact.html", gin.H{
-			"error": "Oops 😬, a field is missing. All except mobile number are required.",
+			"error": "All fields except phone are required.",
 		})
 	} else {
-		go contact.SendEmail(&form)
-		c.HTML(http.StatusOK, "tmpl-contact.html", nil)
+		err := contact.SendEmail(&form)
+		if err != nil {
+			c.HTML(http.StatusInternalServerError, "tmpl-contact.html", gin.H{
+				"error": "Something went wrong sending your message. Please try again or email me directly.",
+			})
+		} else {
+			c.HTML(http.StatusOK, "tmpl-contact.html", gin.H{
+				"success": "Message sent! I'll get back to you soon.",
+			})
+		}
 	}
 
 }

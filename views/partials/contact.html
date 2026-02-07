@@ -105,14 +105,24 @@
   const emailInput = document.getElementById('email');
   const messageInput = document.getElementById('message');
   const errorMessage = "{{ .error }}";
+  const successMessage = "{{ .success }}";
+
+  if (successMessage) {
+    const toast = document.createElement('div');
+    toast.className = 'fixed top-20 right-6 z-50 card px-5 py-3.5 text-sm text-[#1a1a1a] animate-fade-up shadow-lg';
+    toast.style.borderLeft = '3px solid #22c55e';
+    toast.innerHTML = '<i class="fa-solid fa-check text-[#22c55e] mr-2"></i>' + successMessage;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 6000);
+  }
 
   if (errorMessage) {
     const toast = document.createElement('div');
     toast.className = 'fixed top-20 right-6 z-50 card px-5 py-3.5 text-sm text-[#1a1a1a] animate-fade-up shadow-lg';
     toast.style.borderLeft = '3px solid #ef4444';
-    toast.textContent = errorMessage;
+    toast.innerHTML = '<i class="fa-solid fa-circle-exclamation text-[#ef4444] mr-2"></i>' + errorMessage;
     document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 5000);
+    setTimeout(() => toast.remove(), 6000);
   }
 
   form.addEventListener('submit', (event) => {
