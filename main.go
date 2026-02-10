@@ -2,7 +2,10 @@ package main
 
 import (
 	"log"
+	"path/filepath"
+	"strings"
 
+	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
 	"github.com/jacewalker/tools/routes"
 	"github.com/joho/godotenv"
@@ -15,8 +18,23 @@ func main() {
 	gin.SetMode(gin.ReleaseMode)
 
 	r := gin.New()
+	r.Use(gzip.Gzip(gzip.DefaultCompression))
 	r.LoadHTMLGlob("./views/*/*.html")
-	r.Static("/assets", "./assets")
+
+	// Static assets with long cache headers (1 year) and immutable for fingerprinted files
+	r.Group("/assets").Use(func(c *gin.Context) {
+		ext := strings.ToLower(filepath.Ext(c.Request.URL.Path))
+		switch ext {
+		case ".css", ".js", ".woff2", ".woff", ".ttf":
+			c.Header("Cache-Control", "public, max-age=31536000, immutable")
+		case ".jpg", ".jpeg", ".png", ".webp", ".gif", ".svg", ".ico":
+			c.Header("Cache-Control", "public, max-age=31536000, immutable")
+		default:
+			c.Header("Cache-Control", "public, max-age=86400")
+		}
+		c.Next()
+	}).Static("/", "./assets")
+
 	r.GET("/", routes.IndexRoute)
 	r.GET("/services", routes.ServicesRoute)
 	r.GET("/about", routes.AboutMeRoute)
