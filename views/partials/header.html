@@ -339,11 +339,12 @@
     pointer-events: none;
   }
 
-  /* 2. Magnetic card tilt */
+  /* 2. Magnetic card tilt — override transition to exclude transform so JS mousemove is instant */
   .card-tilt {
     transform-style: preserve-3d;
     perspective: 800px;
     will-change: transform;
+    transition: border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1) !important;
   }
   .card-tilt .card-glare {
     position: absolute;
@@ -445,7 +446,8 @@
 
     // --- Magnetic Card Tilt ---
     document.querySelectorAll('.card').forEach(function(card) {
-      // Wrap card for 3D perspective
+      // Skip forms (e.g. contact form)
+      if (card.tagName === 'FORM') return;
       card.classList.add('card-tilt');
       card.style.position = 'relative';
       card.style.overflow = 'hidden';
@@ -466,16 +468,30 @@
       });
 
       card.addEventListener('mouseleave', function() {
+        card.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1)';
         card.style.transform = '';
         glare.style.background = '';
+        setTimeout(function() { card.style.transition = ''; }, 400);
       });
     });
 
     // --- Counter Animation ---
+    function getAnimDelay(el) {
+      // Walk up to find an ancestor with a CSS animation delay
+      var node = el.closest('[class*="delay-"]');
+      if (!node) return 0;
+      var match = node.className.match(/delay-(\d+)/);
+      var delay = match ? parseInt(match[1], 10) : 0;
+      // Add the animation duration (700ms for fade-up)
+      return delay + 700;
+    }
+
     document.querySelectorAll('[data-count-to]').forEach(function(el) {
       var target = el.getAttribute('data-count-to');
       var suffix = el.getAttribute('data-count-suffix') || '';
       var isNum = /^\d+(\.\d+)?$/.test(target);
+      var animWait = getAnimDelay(el);
+
       if (!isNum) {
         // For non-numeric like "24/7" — type it out
         var original = target + suffix;
@@ -484,12 +500,14 @@
         var countObs = new IntersectionObserver(function(entries) {
           if (entries[0].isIntersecting && !counted) {
             counted = true;
-            var idx = 0;
-            var typeTimer = setInterval(function() {
-              el.textContent = original.substring(0, idx + 1);
-              idx++;
-              if (idx >= original.length) clearInterval(typeTimer);
-            }, 80);
+            setTimeout(function() {
+              var idx = 0;
+              var typeTimer = setInterval(function() {
+                el.textContent = original.substring(0, idx + 1);
+                idx++;
+                if (idx >= original.length) clearInterval(typeTimer);
+              }, 80);
+            }, animWait);
             countObs.unobserve(el);
           }
         }, { threshold: 0.5 });
@@ -502,18 +520,19 @@
         var countObs = new IntersectionObserver(function(entries) {
           if (entries[0].isIntersecting && !counted) {
             counted = true;
-            var start = 0;
-            var duration = 1200;
-            var startTime = null;
-            function step(ts) {
-              if (!startTime) startTime = ts;
-              var progress = Math.min((ts - startTime) / duration, 1);
-              var eased = 1 - Math.pow(1 - progress, 3);
-              var current = Math.round(eased * num);
-              el.textContent = current + suffix;
-              if (progress < 1) requestAnimationFrame(step);
-            }
-            requestAnimationFrame(step);
+            setTimeout(function() {
+              var startTime = null;
+              var duration = 1200;
+              function step(ts) {
+                if (!startTime) startTime = ts;
+                var progress = Math.min((ts - startTime) / duration, 1);
+                var eased = 1 - Math.pow(1 - progress, 3);
+                var current = Math.round(eased * num);
+                el.textContent = current + suffix;
+                if (progress < 1) requestAnimationFrame(step);
+              }
+              requestAnimationFrame(step);
+            }, animWait);
             countObs.unobserve(el);
           }
         }, { threshold: 0.5 });
