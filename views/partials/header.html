@@ -343,9 +343,9 @@
 
   /* 2. Magnetic card tilt — override transition to exclude transform so JS mousemove is instant */
   .card-tilt {
-    transform-style: preserve-3d;
-    perspective: 800px;
     will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     transition: border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1) !important;
   }
   .card-tilt .card-glare {
