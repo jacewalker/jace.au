@@ -1,6 +1,8 @@
 <!-- HERO -->
-<section class="min-h-screen flex items-center relative">
-  <div class="absolute inset-0 dot-grid opacity-50"></div>
+<section class="min-h-screen flex items-center relative" id="hero-section">
+  <canvas id="hero-particle-canvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+  <!-- dot-grid fallback for mobile (canvas hidden on small screens) -->
+  <div class="absolute inset-0 dot-grid opacity-50 md:hidden"></div>
 
   <div class="max-w-5xl mx-auto px-6 py-32 w-full relative">
     <div class="grid lg:grid-cols-12 gap-16 items-center">
@@ -406,3 +408,160 @@
     </div>
   </div>
 </section>
+
+<!-- Hero particle boost layer — denser overlay, scoped to hero only -->
+<script>
+(function() {
+  if (window.innerWidth < 768) return;
+  var canvas = document.getElementById('hero-particle-canvas');
+  var hero = document.getElementById('hero-section');
+  if (!canvas || !hero) return;
+
+  var ctx = canvas.getContext('2d');
+  var width, height, particles, animId;
+  var mouse = { x: -9999, y: -9999 };
+
+  var CONFIG = {
+    count: 70,
+    maxRadius: 2.5,
+    minRadius: 1,
+    connectDistance: 160,
+    mouseDistance: 220,
+    speed: 0.2,
+    particleColor: 'rgba(37, 99, 235, ',
+    lineColor: 'rgba(37, 99, 235, ',
+    particleOpacity: 0.55,
+    lineOpacity: 0.18,
+    mouseLineOpacity: 0.3,
+    fadeHeight: 160
+  };
+
+  function resize() {
+    var rect = hero.getBoundingClientRect();
+    var dpr = window.devicePixelRatio || 1;
+    width = rect.width;
+    height = rect.height;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function createParticles() {
+    particles = [];
+    for (var i = 0; i < CONFIG.count; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * CONFIG.speed,
+        vy: (Math.random() - 0.5) * CONFIG.speed,
+        r: CONFIG.minRadius + Math.random() * (CONFIG.maxRadius - CONFIG.minRadius)
+      });
+    }
+  }
+
+  function fadeMultiplier(y) {
+    var fadeStart = height - CONFIG.fadeHeight;
+    if (y > fadeStart) return 1 - (y - fadeStart) / CONFIG.fadeHeight;
+    return 1;
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, width, height);
+
+    for (var i = 0; i < particles.length; i++) {
+      var p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > width) p.vx *= -1;
+      if (p.y < 0 || p.y > height) p.vy *= -1;
+      p.x = Math.max(0, Math.min(width, p.x));
+      p.y = Math.max(0, Math.min(height, p.y));
+    }
+
+    for (var i = 0; i < particles.length; i++) {
+      for (var j = i + 1; j < particles.length; j++) {
+        var a = particles[i], b = particles[j];
+        var dx = a.x - b.x, dy = a.y - b.y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < CONFIG.connectDistance) {
+          var fade = Math.min(fadeMultiplier(a.y), fadeMultiplier(b.y));
+          var opacity = CONFIG.lineOpacity * (1 - dist / CONFIG.connectDistance) * fade;
+          if (opacity > 0.003) {
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = CONFIG.lineColor + opacity + ')';
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    for (var i = 0; i < particles.length; i++) {
+      var p = particles[i];
+      var dx = p.x - mouse.x, dy = p.y - mouse.y;
+      var dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < CONFIG.mouseDistance) {
+        var fade = fadeMultiplier(p.y);
+        var opacity = CONFIG.mouseLineOpacity * (1 - dist / CONFIG.mouseDistance) * fade;
+        if (opacity > 0.003) {
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.strokeStyle = CONFIG.lineColor + opacity + ')';
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
+    }
+
+    for (var i = 0; i < particles.length; i++) {
+      var p = particles[i];
+      var fade = fadeMultiplier(p.y);
+      var opacity = CONFIG.particleOpacity * fade;
+      if (opacity > 0.01) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = CONFIG.particleColor + opacity + ')';
+        ctx.fill();
+      }
+    }
+
+    animId = requestAnimationFrame(draw);
+  }
+
+  hero.addEventListener('mousemove', function(e) {
+    var rect = hero.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+  hero.addEventListener('mouseleave', function() {
+    mouse.x = -9999;
+    mouse.y = -9999;
+  });
+
+  var visObs = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting) {
+      if (!animId) animId = requestAnimationFrame(draw);
+    } else {
+      if (animId) { cancelAnimationFrame(animId); animId = null; }
+    }
+  }, { threshold: 0 });
+  visObs.observe(hero);
+
+  window.addEventListener('resize', function() {
+    resize();
+    for (var i = 0; i < particles.length; i++) {
+      if (particles[i].x > width) particles[i].x = Math.random() * width;
+      if (particles[i].y > height) particles[i].y = Math.random() * height;
+    }
+  });
+
+  resize();
+  createParticles();
+  draw();
+})();
+</script>

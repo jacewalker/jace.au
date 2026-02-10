@@ -53,6 +53,26 @@
     background-size: 24px 24px;
   }
 
+  /* Particle canvas — fixed full-page background, hidden on mobile */
+  #particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+  @media (max-width: 767px) {
+    #particle-canvas { display: none !important; }
+  }
+
+  /* Ensure all page content sits above the canvas */
+  body > nav, body > main, body > section, body > footer, body > div {
+    position: relative;
+    z-index: 1;
+  }
+
   /* Animations */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
@@ -317,5 +337,154 @@
     }, { threshold: 0.05, rootMargin: '0px 0px -10px 0px' });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  });
+</script>
+
+<!-- Particle Constellation — full-page background -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Skip on mobile
+    if (window.innerWidth < 768) return;
+
+    // Create canvas
+    var canvas = document.createElement('canvas');
+    canvas.id = 'particle-canvas';
+    document.body.insertBefore(canvas, document.body.firstChild);
+
+    var ctx = canvas.getContext('2d');
+    var width, height, particles, animId;
+    var mouse = { x: -9999, y: -9999 };
+
+    var CONFIG = {
+      count: 90,
+      maxRadius: 2,
+      minRadius: 0.8,
+      connectDistance: 150,
+      mouseDistance: 200,
+      speed: 0.2,
+      particleColor: 'rgba(37, 99, 235, ',
+      lineColor: 'rgba(37, 99, 235, ',
+      particleOpacity: 0.4,
+      lineOpacity: 0.14,
+      mouseLineOpacity: 0.22
+    };
+
+    function resize() {
+      var dpr = window.devicePixelRatio || 1;
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function createParticles() {
+      particles = [];
+      for (var i = 0; i < CONFIG.count; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * CONFIG.speed,
+          vy: (Math.random() - 0.5) * CONFIG.speed,
+          r: CONFIG.minRadius + Math.random() * (CONFIG.maxRadius - CONFIG.minRadius)
+        });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Update positions
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+        p.x = Math.max(0, Math.min(width, p.x));
+        p.y = Math.max(0, Math.min(height, p.y));
+      }
+
+      // Particle-to-particle connections
+      for (var i = 0; i < particles.length; i++) {
+        for (var j = i + 1; j < particles.length; j++) {
+          var a = particles[i], b = particles[j];
+          var dx = a.x - b.x, dy = a.y - b.y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < CONFIG.connectDistance) {
+            var opacity = CONFIG.lineOpacity * (1 - dist / CONFIG.connectDistance);
+            if (opacity > 0.003) {
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.strokeStyle = CONFIG.lineColor + opacity + ')';
+              ctx.lineWidth = 0.6;
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      // Mouse connections
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        var dx = p.x - mouse.x, dy = p.y - mouse.y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < CONFIG.mouseDistance) {
+          var opacity = CONFIG.mouseLineOpacity * (1 - dist / CONFIG.mouseDistance);
+          if (opacity > 0.003) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.strokeStyle = CONFIG.lineColor + opacity + ')';
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw dots
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = CONFIG.particleColor + CONFIG.particleOpacity + ')';
+        ctx.fill();
+      }
+
+      animId = requestAnimationFrame(draw);
+    }
+
+    // Track mouse position
+    document.addEventListener('mousemove', function(e) {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    document.addEventListener('mouseleave', function() {
+      mouse.x = -9999;
+      mouse.y = -9999;
+    });
+
+    // Pause when tab is hidden
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        if (animId) { cancelAnimationFrame(animId); animId = null; }
+      } else {
+        if (!animId) animId = requestAnimationFrame(draw);
+      }
+    });
+
+    window.addEventListener('resize', function() {
+      resize();
+      for (var i = 0; i < particles.length; i++) {
+        if (particles[i].x > width) particles[i].x = Math.random() * width;
+        if (particles[i].y > height) particles[i].y = Math.random() * height;
+      }
+    });
+
+    resize();
+    createParticles();
+    draw();
   });
 </script>
