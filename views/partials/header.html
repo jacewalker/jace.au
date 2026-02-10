@@ -455,6 +455,14 @@
       glare.className = 'card-glare';
       card.appendChild(glare);
 
+      var snapTimer = null;
+
+      card.addEventListener('mouseenter', function() {
+        // Cancel any pending snap-back and ensure transform has no transition
+        if (snapTimer) { clearTimeout(snapTimer); snapTimer = null; }
+        card.style.transition = 'border-color 0.3s, box-shadow 0.3s';
+      });
+
       card.addEventListener('mousemove', function(e) {
         var rect = card.getBoundingClientRect();
         var x = e.clientX - rect.left;
@@ -468,10 +476,11 @@
       });
 
       card.addEventListener('mouseleave', function() {
-        card.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1)';
+        // Animate transform back to rest, then clear inline styles
+        card.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s, box-shadow 0.3s';
         card.style.transform = '';
         glare.style.background = '';
-        setTimeout(function() { card.style.transition = ''; }, 400);
+        snapTimer = setTimeout(function() { card.style.transition = ''; snapTimer = null; }, 400);
       });
     });
 
