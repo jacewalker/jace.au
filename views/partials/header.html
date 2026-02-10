@@ -323,6 +323,102 @@
   details .faq-close { display: none; }
   details[open] .faq-open { display: none; }
   details[open] .faq-close { display: inline; }
+
+  /* === WOW FACTORS === */
+
+  /* 1. Scroll progress bar */
+  #scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: var(--accent);
+    z-index: 9999;
+    width: 0%;
+    transition: none;
+    pointer-events: none;
+  }
+
+  /* 2. Magnetic card tilt */
+  .card-tilt {
+    transform-style: preserve-3d;
+    perspective: 800px;
+    will-change: transform;
+  }
+  .card-tilt .card-glare {
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.25) 0%, transparent 60%);
+    z-index: 2;
+  }
+  .card-tilt:hover .card-glare {
+    opacity: 1;
+  }
+
+  /* 3. Staggered reveal for grids */
+  .reveal-stagger > .reveal:nth-child(1) { transition-delay: 0ms; }
+  .reveal-stagger > .reveal:nth-child(2) { transition-delay: 80ms; }
+  .reveal-stagger > .reveal:nth-child(3) { transition-delay: 160ms; }
+  .reveal-stagger > .reveal:nth-child(4) { transition-delay: 240ms; }
+
+  /* 4. CTA glow */
+  @keyframes ctaGlow {
+    0%, 100% { transform: scale(1); opacity: 0.4; }
+    50% { transform: scale(1.15); opacity: 0.7; }
+  }
+  .cta-glow {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ctaGlow 4s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* 5. Page transitions */
+  .page-transition {
+    animation: pageIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  @keyframes pageIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .page-out {
+    animation: pageOut 0.2s ease both;
+  }
+  @keyframes pageOut {
+    from { opacity: 1; }
+    to { opacity: 0; transform: translateY(-8px); }
+  }
+
+  /* 6. Typed cursor */
+  .typed-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: var(--accent);
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: cursorBlink 0.7s step-end infinite;
+  }
+  @keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* 7. Counter animation */
+  .count-up {
+    display: inline-block;
+  }
 </style>
 
 <script>
@@ -337,6 +433,142 @@
     }, { threshold: 0.05, rootMargin: '0px 0px -10px 0px' });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // --- Scroll Progress Bar ---
+    var progressBar = document.createElement('div');
+    progressBar.id = 'scroll-progress';
+    document.body.appendChild(progressBar);
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+    }, { passive: true });
+
+    // --- Magnetic Card Tilt ---
+    document.querySelectorAll('.card').forEach(function(card) {
+      // Wrap card for 3D perspective
+      card.classList.add('card-tilt');
+      card.style.position = 'relative';
+      card.style.overflow = 'hidden';
+      var glare = document.createElement('div');
+      glare.className = 'card-glare';
+      card.appendChild(glare);
+
+      card.addEventListener('mousemove', function(e) {
+        var rect = card.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        var centerX = rect.width / 2;
+        var centerY = rect.height / 2;
+        var rotateY = ((x - centerX) / centerX) * 6;
+        var rotateX = ((centerY - y) / centerY) * 6;
+        card.style.transform = 'perspective(800px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-2px)';
+        glare.style.background = 'radial-gradient(circle at ' + x + 'px ' + y + 'px, rgba(255,255,255,0.2) 0%, transparent 60%)';
+      });
+
+      card.addEventListener('mouseleave', function() {
+        card.style.transform = '';
+        glare.style.background = '';
+      });
+    });
+
+    // --- Counter Animation ---
+    document.querySelectorAll('[data-count-to]').forEach(function(el) {
+      var target = el.getAttribute('data-count-to');
+      var suffix = el.getAttribute('data-count-suffix') || '';
+      var isNum = /^\d+(\.\d+)?$/.test(target);
+      if (!isNum) {
+        // For non-numeric like "24/7" — type it out
+        var original = target + suffix;
+        el.textContent = '';
+        var counted = false;
+        var countObs = new IntersectionObserver(function(entries) {
+          if (entries[0].isIntersecting && !counted) {
+            counted = true;
+            var idx = 0;
+            var typeTimer = setInterval(function() {
+              el.textContent = original.substring(0, idx + 1);
+              idx++;
+              if (idx >= original.length) clearInterval(typeTimer);
+            }, 80);
+            countObs.unobserve(el);
+          }
+        }, { threshold: 0.5 });
+        countObs.observe(el);
+      } else {
+        // Numeric counter
+        var num = parseFloat(target);
+        el.textContent = '0' + suffix;
+        var counted = false;
+        var countObs = new IntersectionObserver(function(entries) {
+          if (entries[0].isIntersecting && !counted) {
+            counted = true;
+            var start = 0;
+            var duration = 1200;
+            var startTime = null;
+            function step(ts) {
+              if (!startTime) startTime = ts;
+              var progress = Math.min((ts - startTime) / duration, 1);
+              var eased = 1 - Math.pow(1 - progress, 3);
+              var current = Math.round(eased * num);
+              el.textContent = current + suffix;
+              if (progress < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+            countObs.unobserve(el);
+          }
+        }, { threshold: 0.5 });
+        countObs.observe(el);
+      }
+    });
+
+    // --- Typed Headline ---
+    document.querySelectorAll('[data-typed]').forEach(function(el) {
+      var text = el.getAttribute('data-typed');
+      el.textContent = '';
+      var cursor = document.createElement('span');
+      cursor.className = 'typed-cursor';
+      el.appendChild(cursor);
+      var typed = false;
+      var typedObs = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting && !typed) {
+          typed = true;
+          var idx = 0;
+          var typeTimer = setInterval(function() {
+            el.textContent = text.substring(0, idx + 1);
+            el.appendChild(cursor);
+            idx++;
+            if (idx >= text.length) {
+              clearInterval(typeTimer);
+              // Remove cursor after a pause
+              setTimeout(function() { cursor.style.display = 'none'; }, 2000);
+            }
+          }, 50);
+          typedObs.unobserve(el);
+        }
+      }, { threshold: 0.5 });
+      typedObs.observe(el.parentElement || el);
+    });
+
+    // --- Smooth Page Transitions ---
+    document.querySelectorAll('a[href]').forEach(function(link) {
+      var href = link.getAttribute('href');
+      // Only intercept internal navigation links
+      if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto:') || link.getAttribute('target')) return;
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var main = document.querySelector('main');
+        if (main) {
+          main.classList.add('page-out');
+          setTimeout(function() { window.location.href = href; }, 200);
+        } else {
+          window.location.href = href;
+        }
+      });
+    });
+
+    // Add page-in animation to main
+    var main = document.querySelector('main');
+    if (main) main.classList.add('page-transition');
   });
 </script>
 
