@@ -18,6 +18,7 @@ func main() {
 	r.LoadHTMLGlob("./views/*/*.html")
 	r.Static("/assets", "./assets")
 	r.GET("/", routes.IndexRoute)
+	r.GET("/services", routes.ServicesRoute)
 	r.GET("/about", routes.AboutMeRoute)
 	r.GET("/projects", routes.ProjectsRoute)
 	r.GET("/posts", routes.ArticlesRoute)

@@ -110,6 +110,12 @@ func SalarySacrificeRoute(c *gin.Context) {
 	})
 }
 
+func ServicesRoute(c *gin.Context) {
+	c.HTML(http.StatusOK, "tmpl-services.html", gin.H{
+		"title": "Services",
+	})
+}
+
 func NotFound(c *gin.Context) {
 	c.HTML(http.StatusNotFound, "tmpl-error404.html", nil)
 }

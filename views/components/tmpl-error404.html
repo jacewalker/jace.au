@@ -2,10 +2,11 @@
 <head>
     {{ template "header.html" }}
 </head>
-<body>
+<body >
     {{ template "menu.html" .}}
     <main>
-        {{ template "404.html" }}
+        {{ template "404.html" .}}
     </main>
+    {{ template "footer.html" .}}
 </body>
 </html>
